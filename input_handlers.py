@@ -459,10 +459,10 @@ class HistoryViewer(EventHandler):
 class PopupMessage(BaseEventHandler):
     """Display a popup text window."""
 
-    def __init(self, parent_handler: BaseEventHandler, text: str):
+    def __init__(self, parent_handler: BaseEventHandler, text: str):
         self.parent = parent_handler
         self.text = text
-    
+
     def on_render(self, console: tcod.Console) -> None:
         """Render the parent and dim the result, then print the message on top."""
         self.parent.on_render(console)
@@ -477,7 +477,7 @@ class PopupMessage(BaseEventHandler):
             bg=color.black,
             alignment=tcod.CENTER,
         )
-    
+
     def ev_keydown(self, event: tcod.event.KeyDown) -> Optional[BaseEventHandler]:
         """Any key returns to the parent handler."""
         return self.parent

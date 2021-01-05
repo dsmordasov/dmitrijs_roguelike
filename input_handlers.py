@@ -250,7 +250,7 @@ class CharacterScreenEventHandler(AskUserEventHandler):
         )
 
         console.print(
-            x=(x + 1), y=(y+4), string=f"Defense: {self.engine.player.fighter.power}"
+            x=(x + 1), y=(y+4), string=f"Defense: {self.engine.player.fighter.defense}"
         )
 
 class LevelUpEventHandler(AskUserEventHandler):

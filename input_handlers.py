@@ -93,6 +93,32 @@ class BaseEventHandler(tcod.event.EventDispatch[ActionOrHandler]):
     def ev_quit(self, event: tcod.event.Quit) -> Optional[Action]:
         raise SystemExit()
 
+class PopupMessage(BaseEventHandler):
+    """Display a popup text window."""
+
+    def __init__(self, parent_handler: BaseEventHandler, text: str):
+        self.parent = parent_handler
+        self.text = text
+
+    def on_render(self, console: tcod.Console) -> None:
+        """Render the parent and dim the result, then print the message on top."""
+        self.parent.on_render(console)
+        console.tiles_rgb["fg"] //= 8
+        console.tiles_rgb["bg"] //= 8
+
+        console.print(
+            console.width // 2,
+            console.height //2,
+            self.text,
+            fg=color.white,
+            bg=color.black,
+            alignment=tcod.CENTER,
+        )
+
+    def ev_keydown(self, event: tcod.event.KeyDown) -> Optional[BaseEventHandler]:
+        """Any key returns to the parent handler."""
+        return self.parent
+
 class EventHandler(BaseEventHandler):
     def __init__(self, engine: Engine):
         self.engine = engine
@@ -181,6 +207,20 @@ class MainGameEventHandler(EventHandler):
 
         # No valid key pressed
         return action
+
+class GameOverEventHandler(EventHandler):
+    def on_quit(self) -> None:
+        """Handle exiting out of a finished game"""
+        if os.path.exists("savegame.sav"):
+            os.remove("savegame.sav") # Deletes the active save file
+        raise exceptions.QuitWithoutSaving() # Avoid saving a finished game
+
+    def ev_quit(self, event: tcod.event.Quit) -> None:
+        self.on_quit()
+
+    def ev_keydown(self, event: tcod.event.KeyDown) -> None:
+        if event.sym == tcod.event.K_ESCAPE:
+            self.on_quit()
 
 class AskUserEventHandler(EventHandler):
     """Handles user input for actions wichi require special input."""
@@ -367,7 +407,15 @@ class InventoryEventHandler(AskUserEventHandler):
         if number_of_items_in_inventory > 0:
             for i, item in enumerate(self.engine.player.inventory.items):
                 item_key = chr(ord("a") + i)
-                console.print(x + 1, y + i + 1, f"({item_key}) {item.name}")
+                
+                is_equipped = self.engine.player.equipment.item_is_equipped(item)
+
+                item_string = f"({item_key}) {item.name}"
+
+                if is_equipped:
+                    item_string = f"({item_key}) (E) {item.name}"
+
+                console.print(x + 1, y + i + 1, item_string)
         else:
             console.print(x + 1, y + 1, "(Empty)")
         
@@ -395,8 +443,14 @@ class InventoryActivateHandler(InventoryEventHandler):
     TITLE = "Select an item to use"
 
     def on_item_selected(self, item: Item) -> Optional[ActionOrHandler]:
-        """Return the action for the selected item."""
-        return item.consumable.get_action(self.engine.player)
+
+        if item.consumable:
+            # Return the action for the selected item
+            return item.consumable.get_action(self.engine.player)
+        elif item.equippable:
+            return actions.EquipAction(self.engine.player, item)
+        else:
+            return None
 
 class InventoryDropHandler(InventoryEventHandler):
     """Handle dropping an inventory item."""
@@ -515,20 +569,6 @@ class AreaRangedAttackHandler(SelectIndexHandler):
     def on_index_selected(self, x: int, y: int) -> Optional[Action]:
         return self.callback((x, y))
 
-class GameOverEventHandler(EventHandler):
-    def on_quit(self) -> None:
-        """Handle exiting out of a finished game"""
-        if os.path.exists("savegame.sav"):
-            os.remove("savegame.sav") # Deletes the active save file
-        raise exceptions.QuitWithoutSaving() # Avoid saving a finished game
-
-    def ev_quit(self, event: tcod.event.Quit) -> None:
-        self.on_quit()
-
-    def ev_keydown(self, event: tcod.event.KeyDown) -> None:
-        if event.sym == tcod.event.K_ESCAPE:
-            self.on_quit()
-
 class HistoryViewer(EventHandler):
     """Print the history on a larger window which can be navigated"""
 
@@ -580,28 +620,3 @@ class HistoryViewer(EventHandler):
             return MainGameEventHandler(self.engine)
         return None
 
-class PopupMessage(BaseEventHandler):
-    """Display a popup text window."""
-
-    def __init__(self, parent_handler: BaseEventHandler, text: str):
-        self.parent = parent_handler
-        self.text = text
-
-    def on_render(self, console: tcod.Console) -> None:
-        """Render the parent and dim the result, then print the message on top."""
-        self.parent.on_render(console)
-        console.tiles_rgb["fg"] //= 8
-        console.tiles_rgb["bg"] //= 8
-
-        console.print(
-            console.width // 2,
-            console.height //2,
-            self.text,
-            fg=color.white,
-            bg=color.black,
-            alignment=tcod.CENTER,
-        )
-
-    def ev_keydown(self, event: tcod.event.KeyDown) -> Optional[BaseEventHandler]:
-        """Any key returns to the parent handler."""
-        return self.parent

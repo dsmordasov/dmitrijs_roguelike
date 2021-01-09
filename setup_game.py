@@ -25,7 +25,7 @@ def new_game() -> Engine:
 
     room_max_size = 10
     room_min_size = 6
-    max_rooms = 30
+    max_rooms = 5
 
     player = copy.deepcopy(entity_factories.player)
 

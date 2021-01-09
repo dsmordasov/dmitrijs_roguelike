@@ -60,3 +60,9 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
+""" 
+ ----------||||| BUGLIST  |||||----------
+ 1) player can delve deeper into a dungeon even if there's an enemy on top of the staircase
+
+"""

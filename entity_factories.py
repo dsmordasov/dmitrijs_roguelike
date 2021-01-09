@@ -12,7 +12,7 @@ player = Actor(
     name="Player", 
     ai_cls=HostileEnemy, # It is overriden, do not worry
     equipment=Equipment(),
-    fighter=Fighter(hp=30, base_defense=0, base_power=2),
+    fighter=Fighter(hp=50, base_defense=10, base_power=20),
     inventory=Inventory(capacity=26),
     level=Level(level_up_base=200)
     )

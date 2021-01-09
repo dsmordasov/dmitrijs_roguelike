@@ -10,6 +10,7 @@ import actions
 from actions import (
     Action,
     BumpAction,
+    DelveAction,
     PickupAction,
     WaitAction
 )
@@ -177,14 +178,12 @@ class MainGameEventHandler(EventHandler):
 
         player = self.engine.player
 
-        if key == tcod.event.K_PERIOD and modifier & (
-            tcod.event.KMOD_LSHIFT | tcod.event.KMOD_RSHIFT
-        ):
-            return actions.TakeStairsAction(player)
-
         if key in MOVE_KEYS:
             dx, dy = MOVE_KEYS[key]
-            action = BumpAction(player, dx, dy)
+            if (player.x + dx, player.y + dy) == self.engine.game_map.downstairs_location:
+                return DelveEventHandler(self.engine)
+            else:
+                action = BumpAction(player, dx, dy)
         elif key in WAIT_KEYS:
             action = WaitAction(player)
         elif key == tcod.event.K_ESCAPE:
@@ -292,6 +291,58 @@ class CharacterScreenEventHandler(AskUserEventHandler):
         console.print(
             x=(x + 1), y=(y+4), string=f"Defense: {self.engine.player.fighter.defense}"
         )
+
+class DelveEventHandler(AskUserEventHandler):
+    TITLE = "Delve Deeper"
+
+    def on_render(self, console: tcod.Console) -> None:
+        super().on_render(console)
+
+        if self.engine.player.x <= 30:
+            x = 40
+        else:
+            x = 0
+        
+        console.draw_frame(
+            x=x,
+            y=0,
+            width=35,
+            height=8,
+            title=self.TITLE,
+            clear=True,
+            fg=(255, 255, 255),
+            bg=(0, 0, 0)
+        )
+
+        console.print(x=(x + 1), y=1, string="Are you sure you want to delve")
+        console.print(x=(x + 1), y=2, string=f"deeper, down to level {self.engine.game_world.current_floor + 1}?")
+        console.print(x=(x + 1), y=4, string="You will not be able to go back!")
+        console.print(x=(x + 1), y=5, string="(y)es")
+        console.print(x=(x + 1), y=6, string="(n)o")
+    
+    def ev_keydown(self, event: tcod.event.KeyDown) -> Optional[ActionOrHandler]:
+        player = self.engine.player
+        key = event.sym
+
+        if (key == tcod.event.K_y or key == tcod.event.K_n):
+            if key == tcod.event.K_y:
+                return DelveAction(player)
+            else:
+                self.engine.message_log.add_message("You choose to wait before delving deeper.")
+        else:
+            self.engine.message_log.add_message("Invalid entry.", color.invalid)
+
+            return None 
+
+        return super().ev_keydown(event)
+
+    def ev_mousebutton(
+        self, event: tcod.event.MouseButtonDown
+    ) -> Optional[ActionOrHandler]:
+        """
+        Don't allow the player to click to exit the menu, like normal
+        """
+        return None
 
 class LevelUpEventHandler(AskUserEventHandler):
     TITLE = "Level Up"

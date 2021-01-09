@@ -25,7 +25,7 @@ def new_game() -> Engine:
 
     room_max_size = 10
     room_min_size = 6
-    max_rooms = 30
+    max_rooms = 5
 
     player = copy.deepcopy(entity_factories.player)
 
@@ -47,7 +47,7 @@ def new_game() -> Engine:
         "Hello and welcome, adventurer, to this another Roguelike!"
     )
 
-    # GIVE PLAYER EQUIPMENT TO START WITH
+    """ # GIVE PLAYER EQUIPMENT TO START WITH
     dagger = copy.deepcopy(entity_factories.dagger)
     leather_armor = copy.deepcopy(entity_factories.leather_armor)
     dagger.parent = player.inventory
@@ -56,7 +56,7 @@ def new_game() -> Engine:
     player.equipment.toggle_equip(dagger, add_message=False)
     player.inventory.items.append(leather_armor)
     player.equipment.toggle_equip(leather_armor, add_message=False)
-    # GIVE PLAYER EQUIPMENT TO START WITH
+    # GIVE PLAYER EQUIPMENT TO START WITH """
     return engine
 
 def load_game(filename: str) -> Engine:

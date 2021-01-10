@@ -64,8 +64,12 @@ class GameMap:
         for actor in self.actors:
             if actor.x == x and actor.y == y:
                 return actor
-        
         return None
+    
+    def get_item_at_location(self, x: int, y: int) -> Optional[Item]:
+        for item in self.items:
+            if item.x == x and item.y == y:
+                return item
     
 
     def in_bounds(self, x: int, y: int) -> bool:

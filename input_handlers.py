@@ -181,21 +181,18 @@ class MainGameEventHandler(EventHandler):
         if key in MOVE_KEYS:
             dx, dy = MOVE_KEYS[key]
             if (player.x + dx, player.y + dy) == self.engine.game_map.downstairs_location:
-                return DelveEventHandler(self.engine)
+                return DelveEventHandler(self.engine) # Has to be an event, because of the popup
             else:
                 action = BumpAction(player, dx, dy)
+        
         elif key in WAIT_KEYS:
             action = WaitAction(player)
         elif key == tcod.event.K_ESCAPE:
             raise SystemExit()
         elif key == tcod.event.K_v:
-            return HistoryViewer(self.engine)
-        elif key == tcod.event.K_g:
-            action = PickupAction(player)
-        
+            return HistoryViewer(self.engine)        
         elif key == tcod.event.K_c:
             return CharacterScreenEventHandler(self.engine)
-
         elif key == tcod.event.K_i:
             return InventoryActivateHandler(self.engine)
         elif key == tcod.event.K_d:

@@ -66,6 +66,11 @@ class ActionWithDirection(Action):
         """Return the actor at this actions' destination"""
         return self.engine.game_map.get_actor_at_location(*self.dest_xy)
     
+    @property
+    def target_item(self) -> Optional[Item]:
+        """Return the item at this actions' destination"""
+        return self.engine.game_map.get_item_at_location(*self.dest_xy)
+    
     def perform(self) -> None:
         raise NotImplementedError()
 
@@ -114,32 +119,28 @@ class BumpAction(ActionWithDirection):
     def perform(self) -> None:
         if self.target_actor:
             return MeleeAction(self.entity, self.dx, self.dy).perform()
+        elif self.target_item:
+            return PickupAction(self.entity, self.dx, self.dy).perform()
         else:
             return MovementAction(self.entity, self.dx, self.dy).perform()
 
-class PickupAction(Action):
+class PickupAction(ActionWithDirection):
     """Pickup an item and add it to the inventory, if there is room for it."""
-
-    def __init__(self, entity: Actor):
-        super().__init__(entity)
     
     def perform(self) -> None:
-        actor_location_x = self.entity.x
-        actor_location_y = self.entity.y
-        inventory = self.entity.inventory
+        item = self.target_item
+        inventory = self.engine.player.inventory
 
-        for item in self.engine.game_map.items:
-            if actor_location_x == item.x and actor_location_y == item.y:
-                if len(inventory.items) >= inventory.capacity:
-                    raise exceptions.Impossible("Your inventory is full.")
+        if len(inventory.items) >= inventory.capacity:
+            raise exceptions.Impossible("Your inventory is full.")
 
-                self.engine.game_map.entities.remove(item)
-                item.parent = self.entity.inventory
-                inventory.items.append(item)
+        self.engine.game_map.entities.remove(item)
+        item.parent = self.entity.inventory
+        inventory.items.append(item)
 
-                self.engine.message_log.add_message(f"You picked up the {item.name}.")
-                return
-        raise exceptions.Impossible("There is nothing here to pick up.")
+        self.engine.message_log.add_message(f"You picked up the {item.name}.")
+        return MovementAction(self.entity, self.dx, self.dy).perform()
+        #raise exceptions.Impossible("There is nothing here to pick up.")
 
 class ItemAction(Action):
     def __init__(

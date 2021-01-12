@@ -64,5 +64,5 @@ if __name__ == "__main__":
 """ 
  ----------||||| BUGLIST  |||||----------
  1) player can delve deeper into a dungeon even if there's an enemy on top of the staircase
-
+ 2) entities can spawn on staircase, not a problem with monsters, but a problem with items! - doesn't get picked up if delving
 """

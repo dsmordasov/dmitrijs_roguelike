@@ -110,3 +110,30 @@ class ConfusedEnemy(BaseAI):
             # The actor will either try to move or attack in the chosen direction
             # In case the actor bumps into a wall, a turn is just wasted
             return BumpAction(self.entity, direction_x, direction_y).perform()
+
+class BlindEnemy(BaseAI):
+    """
+    A blind enemy will stumble around aimlessly.
+    If an actor occupies a tile it is randomly moving into, it will be attacked.
+    """
+    def __init__(self, entity: Actor):
+        super().__init__(entity)
+
+    def perform(self) -> None:
+        
+        direction_x, direction_y = random.choice(
+            [
+                (-1, -1), # NW
+                (0, -1), # N
+                (1, -1), # NE
+                (-1, 0), # W
+                (1, 0), # E
+                (-1, 1), # SW
+                (0, 1), # S
+                (1, 1), # SQ
+            ]
+        )
+
+        # The actor will either try to move or attack in the chosen direction
+        # In case the actor bumps into a wall, a turn is just wasted
+        return BumpAction(self.entity, direction_x, direction_y).perform()

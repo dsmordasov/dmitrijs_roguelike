@@ -38,7 +38,7 @@ rat = Actor(
     level=Level(xp_given=40)
     )
 bat = Actor(
-    char="r", 
+    char="b", 
     color=(63, 127, 63), 
     name="Bat",
     ai_cls=BlindEnemy,
@@ -58,7 +58,7 @@ giant_rat = Actor(
     level=Level(xp_given=100)
     )
 the_rat_catcher = Actor(
-    char="g", 
+    char="K", 
     color=(63, 127, 63), 
     name="The Rat Catcher",
     ai_cls=HostileEnemy,
@@ -68,54 +68,55 @@ the_rat_catcher = Actor(
     level=Level(xp_given=0)
     )
 # Items
-health_potion = Item(
+# Consumables
+pretzel = Item(
     char="!",
     color=(127, 0, 255),
-    name="Health Potion",
+    name="Pretzel",
     consumable=consumable.HealingConsumable(amount=4),
 )
-lightning_scroll = Item(
-    char="~",
+rock = Item(
+    char=".",
     color=(255, 255, 0),
-    name="Lightning Scroll",
-    consumable=consumable.LightningDamageConsumable(damage=20, maximum_range=5),
+    name="Rock",
+    consumable=consumable.RangedDamageConsumable(damage=2, maximum_range=5),
 )
-confusion_scroll = Item(
+carrot_flute = Item(
     char="~",
     color=(207, 63, 255),
-    name="Confusion Scroll",
+    name="Carrot Flute",
     consumable=consumable.ConfusionConsumable(number_of_turns=5)
 )
-fireball_scroll = Item(
-    char="~",
+firebomb = Item(
+    char=".",
     color=(255, 0, 0),
-    name="Fireball Scroll",
-    consumable=consumable.FireballDamageConsumable(damage=12, radius=3)
+    name="Firebomb",
+    consumable=consumable.FirebombDamageConsumable(damage=12, radius=3)
 )
 # Equipment
 # Equipment - weapons
-dagger = Item(
+wooden_stick = Item(
     char="/",
-    color=(0, 191, 255),
-    name="Dagger",
-    equippable=equippable.Dagger()
+    color=(101, 67, 33),
+    name="Wooden Stick",
+    equippable=equippable.WoodenStick()
 )
 sword = Item(
     char="/",
-    color=(0, 191, 255),
+    color=(192, 192, 192),
     name="Sword",
     equippable=equippable.Sword()
 )
 # Equipment - armor
 leather_armor = Item(
     char="[",
-    color=(139, 69, 19),
+    color=(101, 67, 33),
     name="Leather Armor",
     equippable=equippable.LeatherArmor()
 )
 chain_mail = Item(
     char="[",
-    color=(139, 69, 19),
+    color=(192, 192, 192),
     name="Leather Armor",
     equippable=equippable.ChainMail()
 )

@@ -22,7 +22,7 @@ class Equippable(BaseComponent):
         self.power_bonus = power_bonus
         self.defense_bonus = defense_bonus
 
-class Dagger(Equippable):
+class WoodenStick(Equippable):
     def __init__(self) -> None:
         super().__init__(equipment_type=EquipmentType.WEAPON, power_bonus=2)
 

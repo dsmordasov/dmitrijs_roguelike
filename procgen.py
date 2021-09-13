@@ -16,29 +16,36 @@ if TYPE_CHECKING:
 max_items_by_floor = [
     (1, 1),
     (2, 2),
-    (4, 1),
+    (3, 3),
+    (4, 2),
+    (5, 0) # Makes sure no items are spawned on The Rat Catcher floor
 ]
 
 max_monsters_by_floor = [
-    (1, 2),
-    (2, 3),
-    (3, 4),
-    (4, 1)
+    (1, 10),
+    (2, 8),
+    (3, 8),
+    (4, 8),
+    (5, 1)
 ]
 
 item_chances: Dict[int, List[Tuple[Entity, int]]] = {
-    0: [(entity_factories.health_potion, 35), (entity_factories.dagger, 15)],
-    1: [(entity_factories.confusion_scroll, 10), (entity_factories.leather_armor, 10)],
-    2: [(entity_factories.lightning_scroll, 25), (entity_factories.sword, 10)],
-    3: [(entity_factories.fireball_scroll, 25), (entity_factories.chain_mail, 10)],
+    1: [(entity_factories.pretzel, 5), (entity_factories.rock, 5)],
+    2: [(entity_factories.wooden_stick, 10), (entity_factories.leather_armor, 10)],
+    3: [(entity_factories.carrot_flute, 5), (entity_factories.firebomb, 5)],
+    4: [(entity_factories.sword, 25), (entity_factories.chain_mail, 10)],
 }
 
 enemy_chances: Dict[int, List[Tuple[Entity, int]]] = {
-    0: [(entity_factories.mouse, 100)],
-    1: [(entity_factories.rat, 100)],
-    2: [(entity_factories.bat, 100)],
-    3: [(entity_factories.giant_rat, 100)],
-    4: [(entity_factories.the_rat_catcher, 100)] # TODO: Hardcode the_rat_catcher for the final level
+    1: [(entity_factories.mouse, 100)],
+    2: [(entity_factories.mouse, 80), (entity_factories.rat, 20)],
+    3: [(entity_factories.mouse, 40), (entity_factories.rat, 40),\
+         (entity_factories.bat, 20)],
+    4: [(entity_factories.mouse, 20), (entity_factories.rat, 40),\
+         (entity_factories.bat, 20), (entity_factories.giant_rat, 20)],
+    5: [(entity_factories.mouse, 0), (entity_factories.rat, 0),\
+         (entity_factories.bat, 0), (entity_factories.giant_rat, 0),\
+              (entity_factories.the_rat_catcher, 100)] # Forces The Rat Catcher to spawn on 5th floor
 }
 
 def get_max_value_for_floor(

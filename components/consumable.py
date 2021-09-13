@@ -48,14 +48,14 @@ class HealingConsumable(Consumable):
 
         if amount_recovered > 0:
             self.engine.message_log.add_message(
-                f"You consume the {self.parent.name}, and recover {amount_recovered} health.",
+                f"You eat the {self.parent.name}, and recover {amount_recovered} health.",
                 color.health_recovered,
             )
             self.consume()
         else:
             raise Impossible(f"Your health is already full.")
 
-class LightningDamageConsumable(Consumable):
+class RangedDamageConsumable(Consumable):
     def __init__(self, damage: int, maximum_range: int):
         self.damage = damage
         self.maximum_range = maximum_range
@@ -75,7 +75,7 @@ class LightningDamageConsumable(Consumable):
 
         if target:
             self.engine.message_log.add_message(
-                f"A lightning bolt strikes the {target.name} for {self.damage} damage!"
+                f"You chuck the {self.parent.name} at the {target.name} for {self.damage} damage!"
             )
             target.fighter.take_damage(self.damage)
             self.consume()
@@ -89,7 +89,7 @@ class ConfusionConsumable(Consumable):
 
     def get_action(self, consumer: Actor) -> SingleRangedAttackHandler:
         self.engine.message_log.add_message(
-            "Select a target location.", color.needs_target
+            "Select a target to serenade with the flute.", color.needs_target
         )
         return SingleRangedAttackHandler(
             self.engine,
@@ -116,7 +116,7 @@ class ConfusionConsumable(Consumable):
         )
         self.consume
 
-class FireballDamageConsumable(Consumable):
+class FirebombDamageConsumable(Consumable):
     def __init__(self, damage: int, radius: int):
         self.damage = damage
         self.radius = radius
@@ -141,7 +141,7 @@ class FireballDamageConsumable(Consumable):
         for actor in self.engine.game_map.actors:
             if actor.distance(*target_xy) <= self.radius:
                 self.engine.message_log.add_message(
-                    f"The {actor.name} is scorched by the fireball for {self.damage} damage!"
+                    f"The {actor.name} is scorched by the firebomb for {self.damage} damage!"
                 )
                 actor.fighter.take_damage(self.damage)
                 targets_hit = True

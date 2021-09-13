@@ -48,8 +48,8 @@ class Engine:
         self.message_log.render(
             console=console,
             x=21,
-            y=45,
-            width=40,
+            y=44,
+            width=55,
             height=5
         )
 

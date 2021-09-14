@@ -134,6 +134,9 @@ class EventHandler(BaseEventHandler):
             if not self.engine.player.is_alive:
                 # The player was killed sometime during or after the action
                 return GameOverEventHandler(self.engine)
+            elif self.engine.game_won:
+                # The player killed the boss
+                return GameWonEventHandler(self.engine)
             elif self.engine.player.level.requires_level_up:
                 return LevelUpEventHandler(self.engine)
             return MainGameEventHandler(self.engine) # Return to the main handler
@@ -347,6 +350,8 @@ class LevelUpEventHandler(AskUserEventHandler):
     def on_render(self, console: tcod.Console) -> None:
         super().on_render(console)
 
+        # Shifts the console to be drawn to either left or right half on the screen,
+        # depending on the player's position
         if self.engine.player.x <= 30:
             x = 40
         else:
@@ -618,6 +623,7 @@ class AreaRangedAttackHandler(SelectIndexHandler):
         return self.callback((x, y))
 
 class HistoryViewer(EventHandler):
+
     """Print the history on a larger window which can be navigated"""
 
     def __init__(self, engine: Engine):
@@ -668,3 +674,51 @@ class HistoryViewer(EventHandler):
             return MainGameEventHandler(self.engine)
         return None
 
+class GameWonEventHandler(AskUserEventHandler): # TODO: Make an actual game won prompt from this!
+    TITLE = "GAME WON"
+
+    def on_render(self, console: tcod.Console) -> None:
+        super().on_render(console)
+
+        if self.engine.player.x <= 30:
+            x = 40
+        else:
+            x = 0
+        
+        console.draw_frame(
+            x=x,
+            y=0,
+            width=35,
+            height=8,
+            title=self.TITLE,
+            clear=True,
+            fg=(255, 255, 255),
+            bg=(0, 0, 0)
+        )
+
+        console.print(x=(x + 1), y=1, string="You just won the game!")
+        console.print(x=(x + 1), y=2, string=f"Are you happy now?")
+
+    def ev_keydown(self, event: tcod.event.KeyDown) -> Optional[ActionOrHandler]:
+        player = self.engine.player
+        key = event.sym
+
+        if (key == tcod.event.K_y or key == tcod.event.K_n):
+            if key == tcod.event.K_y:
+                return DelveAction(player)
+            else:
+                self.engine.message_log.add_message("You choose to wait before delving deeper.")
+        else:
+            self.engine.message_log.add_message("Invalid entry.", color.invalid)
+
+            return None 
+
+        return super().ev_keydown(event)
+
+    def ev_mousebutton(
+        self, event: tcod.event.MouseButtonDown
+    ) -> Optional[ActionOrHandler]:
+        """
+        Don't allow the player to click to exit the menu, like normal
+        """
+        return None

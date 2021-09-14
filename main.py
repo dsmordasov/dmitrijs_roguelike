@@ -27,7 +27,7 @@ def main() -> None:
         screen_width,
         screen_height,
         tileset=tileset,
-        title="Yet Another Roguelike",
+        title="The Rat Catcher",
         vsync=True
     ) as context:
         root_console = tcod.Console(screen_width, screen_height, order="F")
@@ -65,4 +65,9 @@ if __name__ == "__main__":
  ----------||||| BUGLIST  |||||----------
  1) player can delve deeper into a dungeon even if there's an enemy on top of the staircase
  2) entities can spawn on staircase, not a problem with monsters, but a problem with items! - doesn't get picked up if delving
+ 3) multiple-word entities (e.g. The Rat Catcher) not capitalised in combat messages
+
+----------||||| BEFORE DEPLOYMENT  |||||----------
+1) fix up character attack power and armor to non-godmode
+
 """

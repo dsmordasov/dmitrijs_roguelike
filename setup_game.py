@@ -25,7 +25,7 @@ def new_game() -> Engine:
 
     room_max_size = 10
     room_min_size = 6
-    max_rooms = 5
+    max_rooms = 6
 
     player = copy.deepcopy(entity_factories.player)
 
@@ -51,6 +51,7 @@ def new_game() -> Engine:
     )
 
     """ # GIVE PLAYER EQUIPMENT TO START WITH
+    # example with outdated equipment
     dagger = copy.deepcopy(entity_factories.dagger)
     leather_armor = copy.deepcopy(entity_factories.leather_armor)
     dagger.parent = player.inventory
@@ -79,7 +80,7 @@ class MainMenu(input_handlers.BaseEventHandler):
         console.print(
             console.width // 2,
             console.height // 2 - 4,
-            "THE CASTLE DUNGEONS",
+            "The Rat Catcher",
             fg=color.menu_title,
             alignment=tcod.CENTER,
         )

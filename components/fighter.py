@@ -1,4 +1,5 @@
 from __future__ import annotations
+from os import name
 
 from typing import TYPE_CHECKING
 
@@ -72,6 +73,10 @@ class Fighter(BaseComponent):
         if self.engine.player is self.parent:
             death_message = "You died! Press [Esc] to quit and try again."
             death_message_color = color.player_die
+        elif self.parent.name == "The Rat Catcher":
+            death_message = f"You have killed {self.parent.name}! Now the townsmen of Hammeln are free!"
+            death_message_color = color.game_won
+            self.engine.game_won = True
         else:
             death_message = f"{self.parent.name} is dead!"
             death_message_color = color.enemy_die

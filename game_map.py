@@ -8,6 +8,7 @@ from tcod.console import Console
 from entity import Actor, Item
 import tile_types
 
+
 if TYPE_CHECKING:
     from engine import Engine
     from entity import Entity
@@ -130,15 +131,23 @@ class GameWorld:
         self.current_floor = current_floor
 
     def generate_floor(self) -> None:
-        from procgen import generate_dungeon
+        from procgen import generate_dungeon, generate_end_level # If put on top of the .py file, everything crashes
+
 
         self.current_floor += 1
 
-        self.engine.game_map = generate_dungeon(
-            max_rooms=self.max_rooms,
-            room_min_size=self.room_min_size,
-            room_max_size=self.room_max_size,
-            map_width=self.map_width,
-            map_height=self.map_height,
-            engine=self.engine,
+        if self.current_floor == 2: # Boss room
+            self.engine.game_map = generate_end_level(
+                map_width=self.map_width,
+                map_height=self.map_height,
+                engine=self.engine,
+            )
+        else:
+            self.engine.game_map = generate_dungeon(
+                max_rooms=self.max_rooms,
+                room_min_size=self.room_min_size,
+                room_max_size=self.room_max_size,
+                map_width=self.map_width,
+                map_height=self.map_height,
+                engine=self.engine,
         )

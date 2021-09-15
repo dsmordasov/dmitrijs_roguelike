@@ -5,6 +5,7 @@ import os
 from typing import Callable, Optional, Tuple, TYPE_CHECKING, Union
 
 import tcod
+from tcod.libtcodpy import namegen_destroy
 
 import actions
 from actions import (
@@ -680,45 +681,34 @@ class GameWonEventHandler(AskUserEventHandler): # TODO: Make an actual game won 
     def on_render(self, console: tcod.Console) -> None:
         super().on_render(console)
 
-        if self.engine.player.x <= 30:
-            x = 40
-        else:
-            x = 0
+        x = round(self.engine.game_map.width/4)
+        y = round(self.engine.game_map.height/4)
         
         console.draw_frame(
             x=x,
-            y=0,
-            width=35,
-            height=8,
+            y=y,
+            width=2*x,
+            height=2*y,
             title=self.TITLE,
             clear=True,
             fg=(255, 255, 255),
             bg=(0, 0, 0)
         )
 
-        console.print(x=(x + 1), y=1, string="You just won the game!")
-        console.print(x=(x + 1), y=2, string=f"Are you happy now?")
+        console.print(x=(x + 1), y=(y+1), string=(
+        "\nThank you for my playing my game!" 
+        "\n\nIt is not the pinnacle of fun yet,"
+        "\nbut 'fun' is a feature to be added at"
+        "\nsome point in the future, in paid DLC."
+        "\n\nAs a reward, tell me you how you liked"
+        "\nit and ask me in real life for a beer"
+        "\n(or a coffee). It's on me - I really"
+        "\nappreciate you for putting in the time"
+        "\nto finish this tiny game of mine."
+        "\n\n\n With love,\n\n Dmitrij"))
 
-    def ev_keydown(self, event: tcod.event.KeyDown) -> Optional[ActionOrHandler]:
-        player = self.engine.player
+
+    def ev_keydown(self, event: tcod.event.KeyDown) -> None:
         key = event.sym
-
-        if (key == tcod.event.K_y or key == tcod.event.K_n):
-            if key == tcod.event.K_y:
-                return DelveAction(player)
-            else:
-                self.engine.message_log.add_message("You choose to wait before delving deeper.")
-        else:
-            self.engine.message_log.add_message("Invalid entry.", color.invalid)
-
-            return None 
-
-        return super().ev_keydown(event)
-
-    def ev_mousebutton(
-        self, event: tcod.event.MouseButtonDown
-    ) -> Optional[ActionOrHandler]:
-        """
-        Don't allow the player to click to exit the menu, like normal
-        """
-        return None
+        if key == tcod.event.K_ESCAPE:
+            raise SystemExit()

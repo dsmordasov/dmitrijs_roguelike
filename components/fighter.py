@@ -74,7 +74,8 @@ class Fighter(BaseComponent):
             death_message = "You died! Press [Esc] to quit and try again."
             death_message_color = color.player_die
         elif self.parent.name == "The Rat Catcher":
-            death_message = f"You have killed {self.parent.name}! Now the townsmen of Hammeln are free!"
+            death_message = (f"You have killed {self.parent.name}! Now the townsmen of Hammeln are free!"
+            "   (Press <Esc> to quit)")
             death_message_color = color.game_won
             self.engine.game_won = True
         else:

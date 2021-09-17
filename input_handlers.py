@@ -35,18 +35,18 @@ MOVE_KEYS = {
     #tcod.event.K_PAGEDOWN: (1, 1),
     # Numpad keys
     #tcod.event.K_KP_1: (-1, 1),
-    tcod.event.K_KP_2: (0, 1),
+    #tcod.event.K_KP_2: (0, 1),
     #tcod.event.K_KP_3: (1, 1),
-    tcod.event.K_KP_4: (-1, 0),
-    tcod.event.K_KP_6: (1, 0),
+    #tcod.event.K_KP_4: (-1, 0),
+    #tcod.event.K_KP_6: (1, 0),
     #tcod.event.K_KP_7: (-1, -1),
-    tcod.event.K_KP_8: (0, -1),
+    #tcod.event.K_KP_8: (0, -1),
     #tcod.event.K_KP_9: (1, -1),
     # Vi keys
-    tcod.event.K_h: (-1, 0),
-    tcod.event.K_j: (0, 1),
-    tcod.event.K_k: (0, -1),
-    tcod.event.K_l: (1, 0),
+    #tcod.event.K_h: (-1, 0),
+    #tcod.event.K_j: (0, 1),
+    #tcod.event.K_k: (0, -1),
+    #tcod.event.K_l: (1, 0),
     #tcod.event.K_y: (-1, -1),
     #tcod.event.K_u: (1, -1),
     #tcod.event.K_b: (-1, 1),
@@ -55,8 +55,8 @@ MOVE_KEYS = {
 
 WAIT_KEYS = {
     tcod.event.K_PERIOD,
-    tcod.event.K_KP_5,
-    tcod.event.K_CLEAR,
+    #tcod.event.K_KP_5,
+    #tcod.event.K_CLEAR,
 }
 
 CONFIRM_KEYS = {
@@ -192,7 +192,9 @@ class MainGameEventHandler(EventHandler):
         elif key in WAIT_KEYS:
             action = WaitAction(player)
         elif key == tcod.event.K_ESCAPE:
-            raise SystemExit()
+            return MenuHandler(self.engine)
+        #elif key == tcod.event.K_ESCAPE:
+        #   raise SystemExit()
         elif key == tcod.event.K_v:
             return HistoryViewer(self.engine)        
         elif key == tcod.event.K_c:
@@ -278,19 +280,19 @@ class CharacterScreenEventHandler(AskUserEventHandler):
         )
 
         console.print(
-            x=(x + 1), y=(y+1), string=f"Level: {self.engine.player.level.current_level}"
+            x=(x + 1), y=(y+3), string=f"Level: {self.engine.player.level.current_level}"
         )
 
         console.print(
-            x=(x + 1), y=(y+2), string=f"XP: {self.engine.player.level.current_xp}/{self.engine.player.level.experience_to_next_level}"
+            x=(x + 1), y=(y+4), string=f"XP: {self.engine.player.level.current_xp}/{self.engine.player.level.experience_to_next_level}"
         )
 
         console.print(
-            x=(x + 1), y=(y+3), string=f"Attack: {self.engine.player.fighter.power}"
+            x=(x + 1), y=(y+5), string=f"Attack: {self.engine.player.fighter.power}"
         )
 
         console.print(
-            x=(x + 1), y=(y+4), string=f"Defense: {self.engine.player.fighter.defense}"
+            x=(x + 1), y=(y+6), string=f"Defense: {self.engine.player.fighter.defense}"
         )
 
 class DelveEventHandler(AskUserEventHandler):
@@ -443,7 +445,7 @@ class InventoryEventHandler(AskUserEventHandler):
         else:
             x = 0
 
-        y = 0
+        y = 1
 
         width = len(self.TITLE) + 4
 
@@ -640,7 +642,7 @@ class HistoryViewer(EventHandler):
         # Draw a frame with a custom banner title
         log_console.draw_frame(0, 0, log_console.width, log_console.height)
         log_console.print_box(
-            0, 0, log_console.width, 1, "-|Message history|-", alignment=tcod.CENTER
+            0, 0, log_console.width, 1, "-| Diary |-", alignment=tcod.CENTER
         )
 
         # Render the message log using the cursor parameter
@@ -675,7 +677,7 @@ class HistoryViewer(EventHandler):
             return MainGameEventHandler(self.engine)
         return None
 
-class GameWonEventHandler(AskUserEventHandler): # TODO: Make an actual game won prompt from this!
+class GameWonEventHandler(AskUserEventHandler):
     TITLE = "GAME WON"
 
     def on_render(self, console: tcod.Console) -> None:
@@ -706,9 +708,90 @@ class GameWonEventHandler(AskUserEventHandler): # TODO: Make an actual game won 
         "\nappreciate you for putting in the time"
         "\nto finish this tiny game of mine."
         "\n\n\n With love,\n\n Dmitrij"))
-
+        # If you just read the message above without playing the 
+        # game, same goes for you - for digging through this!
 
     def ev_keydown(self, event: tcod.event.KeyDown) -> None:
         key = event.sym
         if key == tcod.event.K_ESCAPE:
             raise SystemExit()
+
+class MenuHandler(AskUserEventHandler):
+    TITLE = "GAME PAUSED"
+
+    def on_render(self, console: tcod.Console) -> None:
+        super().on_render(console)
+
+        x = round(self.engine.game_map.width/4)
+        y = round(self.engine.game_map.height/4)
+        menu_width = self.engine.game_map.width-2
+        menu_height = self.engine.game_map.height-2
+        
+        console.draw_frame(
+            x=1,
+            y=1,
+            width=menu_width,
+            height=menu_height,
+            title=self.TITLE,
+            clear=True,
+            fg=(255, 255, 255),
+            bg=(0, 0, 0)
+        )
+
+        console.draw_frame(
+            x=round(2*menu_width/3),
+            y=3,
+            width=round(menu_width/3),
+            height=menu_height-5,
+            title="How to play",
+            clear=True,
+            fg=(255, 255, 255),
+            bg=(0, 0, 0)
+        )
+
+        console.print(x=round(2*menu_width/3+1), y=5, string=(
+        "\n"
+        "Movement: Arrow keys\n"
+        "Wait:        .\n" 
+        "Inventory:   I\n"
+        "Drop items:  D\n"
+        "Character:   C\n"
+        "Diary:       V\n"
+        "Look around: /\n"
+        "Pause menu:  Esc\n\n"
+        "Bump into enemies to\n"
+        "attack them or into\n"
+        "objects to pick them up.\n\n"
+        "Look around using '/'\n"
+        "and arrow keys to find\n"
+        "out an entity's name.\n\n"
+        "Use items by accessing\n"
+        "them with their set key\n"
+        "from the inventory.\n\n"
+        "Scroll through the\n"
+        "diary using arrow keys.\n\n"
+        ))
+
+        console.print(x=3, y=5, string=(
+        "\n"
+        "Esc:       Save and quit\n\n"
+        "Any key:   Continue\n" 
+        ))
+
+        console.print_box(
+            x=menu_width-5,
+            y=menu_height-2,
+            width=len(self.engine.version),
+            height=1,
+            string=self.engine.version,
+            fg=color.white,
+            bg=color.red)
+        # If you just read the message above without playing the 
+        # game, same goes for you - for digging through this!
+
+    def ev_keydown(self, event: tcod.event.KeyDown) -> None:
+        key = event.sym
+        if key == tcod.event.K_ESCAPE:
+            raise SystemExit()
+        else:
+            return self.on_exit()

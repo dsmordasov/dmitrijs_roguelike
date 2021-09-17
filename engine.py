@@ -19,7 +19,8 @@ class Engine:
     game_map: GameMap
     game_world: GameWorld
 
-    def __init__(self,player: Actor):
+    def __init__(self, player: Actor):
+        self.version = "v0.1"
         self.message_log = MessageLog()
         self.mouse_location = (0, 0)
         self.player = player
@@ -49,7 +50,7 @@ class Engine:
         self.message_log.render(
             console=console,
             x=21,
-            y=44,
+            y=45,
             width=55,
             height=5
         )

@@ -69,5 +69,6 @@ if __name__ == "__main__":
 
 ----------||||| BEFORE DEPLOYMENT  |||||----------
 1) fix up character attack power and armor to non-godmode
+2) make the end boss appear at appropriate level
 
 """

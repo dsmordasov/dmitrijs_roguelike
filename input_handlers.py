@@ -5,6 +5,7 @@ import os
 from typing import Callable, Optional, Tuple, TYPE_CHECKING, Union
 
 import tcod
+from tcod.event_constants import K_ESCAPE
 from tcod.libtcodpy import namegen_destroy
 
 import actions
@@ -425,7 +426,7 @@ class InventoryEventHandler(AskUserEventHandler):
     What happens then depends in the items' subclass.
     """
 
-    TITLE = "<missing title>"
+    TITLE = "<missing title>" # uhhh? што это
 
     def on_render(self, console: tcod.Console) -> None:
         """Render an inventory menu, which displays the items in the inventory, and the letter to
@@ -752,12 +753,12 @@ class MenuHandler(AskUserEventHandler):
         console.print(x=round(2*menu_width/3+1), y=5, string=(
         "\n"
         "Movement: Arrow keys\n"
-        "Wait:        .\n" 
-        "Inventory:   I\n"
-        "Drop items:  D\n"
-        "Character:   C\n"
-        "Diary:       V\n"
-        "Look around: /\n"
+        "Wait:         .\n" 
+        "Inventory:    I\n"
+        "Drop items:   D\n"
+        "Character:    C\n"
+        "Diary:        V\n"
+        "Look around:  /\n"
         "Pause menu:  Esc\n\n"
         "Bump into enemies to\n"
         "attack them or into\n"
@@ -770,12 +771,14 @@ class MenuHandler(AskUserEventHandler):
         "from the inventory.\n\n"
         "Scroll through the\n"
         "diary using arrow keys.\n\n"
+        "This game saves your\n"
+        "progress automatically."
         ))
 
         console.print(x=3, y=5, string=(
         "\n"
-        "Esc:       Save and quit\n\n"
-        "Any key:   Continue\n" 
+        "(Q)     Save and quit\n\n"
+        "(Esc)   Continue\n" 
         ))
 
         console.print_box(
@@ -786,12 +789,10 @@ class MenuHandler(AskUserEventHandler):
             string=self.engine.version,
             fg=color.white,
             bg=color.red)
-        # If you just read the message above without playing the 
-        # game, same goes for you - for digging through this!
 
     def ev_keydown(self, event: tcod.event.KeyDown) -> None:
         key = event.sym
-        if key == tcod.event.K_ESCAPE:
+        if key == tcod.event.K_q:
             raise SystemExit()
-        else:
+        elif key == tcod.event.K_ESCAPE:
             return self.on_exit()

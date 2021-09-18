@@ -131,7 +131,7 @@ class GameWorld:
         self.current_floor = current_floor
 
     def generate_floor(self) -> None:
-        from procgen import generate_dungeon, generate_end_level # If put on top of the .py file, everything crashes
+        from game.procgen import generate_dungeon, generate_end_level # If put on top of the .py file, everything crashes
 
 
         self.current_floor += 1

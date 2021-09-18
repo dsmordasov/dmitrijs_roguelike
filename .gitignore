@@ -5,3 +5,17 @@ __pycache__/
 
 # Saved games
 *.sav
+
+# Visual Studio Code stuff
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# Local History for Visual Studio Code
+.history/
+
+# No idea (haha) what this is from, but it is not needed
+.idea/*

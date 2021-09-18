@@ -4,7 +4,7 @@ from typing import Optional, TYPE_CHECKING
 
 import game.actions
 import components.ai
-import color
+import game.color as color
 import components.inventory
 from components.base_component import BaseComponent
 from exceptions import Impossible

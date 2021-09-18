@@ -3,7 +3,7 @@ from os import name
 
 from typing import TYPE_CHECKING
 
-import color
+import game.color as color
 from components.base_component import BaseComponent
 from render_order import RenderOrder
 

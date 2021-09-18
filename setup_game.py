@@ -9,7 +9,7 @@ from typing import Optional
 
 import tcod
 
-import color
+import game.color as color
 from engine import Engine
 import entity_factories
 from game_map import GameWorld

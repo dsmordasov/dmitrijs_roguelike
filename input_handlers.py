@@ -16,7 +16,7 @@ from game.actions import (
     PickupAction,
     WaitAction
 )
-import color
+import game.color as color
 import exceptions
 
 

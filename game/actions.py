@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Optional, Tuple, TYPE_CHECKING
 
-import color
+import game.color as color
 import exceptions
 
 if TYPE_CHECKING:

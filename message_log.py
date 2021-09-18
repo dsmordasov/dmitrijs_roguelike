@@ -3,7 +3,7 @@ import textwrap
 
 import tcod
 
-import color
+import game.color as color
 
 class Message:
     def __init__(self, text: str, fg: Tuple[int, int, int]):

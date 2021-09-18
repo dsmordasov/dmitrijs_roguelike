@@ -5,7 +5,7 @@ import tcod
 import game.color as color
 import game.exceptions as exceptions
 import game.input_handlers as input_handlers
-import setup_game
+import game.setup_game as setup_game
 
 def save_game(handler: input_handlers.BaseEventHandler, filename: str) -> None:
     """If the current event handler has an active Engine then save it"""

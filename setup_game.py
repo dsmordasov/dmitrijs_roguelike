@@ -11,7 +11,7 @@ import tcod
 
 import game.color as color
 from game.engine import Engine
-import entity_factories
+import game.entity_factories as entity_factories
 from game_map import GameWorld
 import input_handlers
 

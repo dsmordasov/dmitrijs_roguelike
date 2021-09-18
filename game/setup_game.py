@@ -15,8 +15,21 @@ import game.entity_factories as entity_factories
 from game.game_map import GameWorld
 import game.input_handlers as input_handlers
 
+import sys
+import os
+
+def asset_path(relative_path):
+    """Get absolute path to the asset, for pyinstaller"""
+    try:
+        # pyinstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+    
+    return os.path.join(base_path, relative_path)
 # Load the background image and remove the alpha channel
-background_image = tcod.image.load("assets/menu_background.png")[:, :, :3]
+background_image_path = asset_path("assets/menu_background.png")
+background_image = tcod.image.load(background_image_path)[:, :, :3]
 
 def new_game() -> Engine:
     """Return a brand new game session as an Engine instance."""

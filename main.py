@@ -7,6 +7,22 @@ import game.exceptions as exceptions
 import game.input_handlers as input_handlers
 import game.setup_game as setup_game
 
+import sys
+import os
+
+def asset_path(relative_path):
+    """Get absolute path to the asset, for pyinstaller"""
+    try:
+        # pyinstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+    
+    return os.path.join(base_path, relative_path)
+
+tileset_path = asset_path("assets/Anno_16x16.png")
+
+
 def save_game(handler: input_handlers.BaseEventHandler, filename: str) -> None:
     """If the current event handler has an active Engine then save it"""
     if isinstance(handler, input_handlers.EventHandler):
@@ -18,7 +34,7 @@ def main() -> None:
     screen_height = 50
 
     tileset = tcod.tileset.load_tilesheet(
-        "assets/ANNO_16x16.png", 16, 16, tcod.tileset.CHARMAP_CP437
+        tileset_path, 16, 16, tcod.tileset.CHARMAP_CP437
     )
 
     handler: input_handlers.BaseEventHandler = setup_game.MainMenu()

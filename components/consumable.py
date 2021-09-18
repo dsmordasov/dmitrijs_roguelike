@@ -8,7 +8,7 @@ import game.color as color
 import components.inventory
 from components.base_component import BaseComponent
 from game.exceptions import Impossible
-from input_handlers import (
+from game.input_handlers import (
     ActionOrHandler,
     AreaRangedAttackHandler,
     SingleRangedAttackHandler

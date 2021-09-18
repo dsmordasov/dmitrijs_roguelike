@@ -4,7 +4,7 @@ import tcod
 
 import game.color as color
 import game.exceptions as exceptions
-import input_handlers
+import game.input_handlers as input_handlers
 import setup_game
 
 def save_game(handler: input_handlers.BaseEventHandler, filename: str) -> None:

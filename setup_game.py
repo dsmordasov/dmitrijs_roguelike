@@ -12,8 +12,8 @@ import tcod
 import game.color as color
 from game.engine import Engine
 import game.entity_factories as entity_factories
-from game_map import GameWorld
-import input_handlers
+from game.game_map import GameWorld
+import game.input_handlers as input_handlers
 
 # Load the background image and remove the alpha channel
 background_image = tcod.image.load("menu_background.png")[:, :, :3]

@@ -8,7 +8,7 @@ from tcod.console import Console
 from tcod.map import compute_fov
 
 import game.exceptions as exceptions
-from message_log import MessageLog
+from game.message_log import MessageLog
 import render_functions 
 
 if TYPE_CHECKING:

@@ -4,7 +4,7 @@ from components.equipment import Equipment
 from components.fighter import Fighter
 from components.inventory import Inventory
 from components.level import Level
-from entity import Actor, Item
+from game.entity import Actor, Item
 # PC
 player = Actor(
     char="@", 

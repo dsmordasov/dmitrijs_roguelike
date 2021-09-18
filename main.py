@@ -2,8 +2,8 @@ import traceback
 
 import tcod
 
-import game.color
-import exceptions
+import game.color as color
+import game.exceptions
 import input_handlers
 import setup_game
 

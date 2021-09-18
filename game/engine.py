@@ -7,7 +7,7 @@ from typing import TYPE_CHECKING
 from tcod.console import Console
 from tcod.map import compute_fov
 
-import exceptions
+import game.exceptions as exceptions
 from message_log import MessageLog
 import render_functions 
 

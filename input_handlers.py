@@ -17,7 +17,7 @@ from game.actions import (
     WaitAction
 )
 import game.color as color
-import exceptions
+import game.exceptions as exceptions
 
 
 if TYPE_CHECKING:

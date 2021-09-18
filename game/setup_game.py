@@ -16,7 +16,7 @@ from game.game_map import GameWorld
 import game.input_handlers as input_handlers
 
 # Load the background image and remove the alpha channel
-background_image = tcod.image.load("menu_background.png")[:, :, :3]
+background_image = tcod.image.load("assets/menu_background.png")[:, :, :3]
 
 def new_game() -> Engine:
     """Return a brand new game session as an Engine instance."""

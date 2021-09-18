@@ -7,7 +7,7 @@ import tcod
 
 import game.entity_factories as entity_factories
 from game.game_map import GameMap
-import tile_types
+import game.tile_types as tile_types
 
 if TYPE_CHECKING:
     from engine import Engine

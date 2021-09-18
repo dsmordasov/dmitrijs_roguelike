@@ -9,7 +9,7 @@ from tcod.map import compute_fov
 
 import game.exceptions as exceptions
 from game.message_log import MessageLog
-import render_functions 
+import game.render_functions as render_functions
 
 if TYPE_CHECKING:
     from entity import Actor

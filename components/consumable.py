@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Optional, TYPE_CHECKING
 
-import actions
+import game.actions
 import components.ai
 import color
 import components.inventory

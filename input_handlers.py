@@ -8,8 +8,8 @@ import tcod
 from tcod.event_constants import K_ESCAPE
 from tcod.libtcodpy import namegen_destroy
 
-import actions
-from actions import (
+import game.actions
+from game.actions import (
     Action,
     BumpAction,
     DelveAction,

@@ -10,7 +10,7 @@ from typing import Optional
 import tcod
 
 import game.color as color
-from engine import Engine
+from game.engine import Engine
 import entity_factories
 from game_map import GameWorld
 import input_handlers

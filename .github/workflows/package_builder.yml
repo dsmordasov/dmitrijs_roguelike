@@ -1,6 +1,11 @@
 # /.github/workflows/package_builder.yml
 # https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
-# cheers to https://libtcod.github.io/tutorials/python/2021/distribution for 
+# cheers to https://libtcod.github.io/tutorials/python/2021/distribution for the template
+
+
+# https://git-scm.com/book/en/v2/Git-Basics-Tagging
+# To make a real release, add an annotated tag before pushing, e.g.
+# > git tag -a v0.1 -m "Version 0.1"
 
 name: Deploy
 

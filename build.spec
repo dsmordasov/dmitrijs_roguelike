@@ -1,10 +1,12 @@
 # -*- mode: python ; coding: utf-8 -*-
 # pro tip: using >pyi-makespec --onefile main.py
 #          to build the spec file <3
+# w/ this spec file, to build locally for Windows, 
+# > pyinstaller build.spec
 
 
-# from main import GAME_TITLE works on LOCAL builds only!
-GAME_TITLE = "The Rat Catcher"
+from main import GAME_TITLE # works on LOCAL builds only!
+#GAME_TITLE = "The Rat Catcher" # Uncomment before pushing 
 block_cipher = None
 
 a = Analysis(['main.py'], # remove pathex for portability

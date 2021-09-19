@@ -3,17 +3,6 @@
 #          to build the spec file <3
 
 from main import GAME_TITLE # because that is still up for change
-
-def asset_path(relative_path):
-    """Get absolute path to the asset, for pyinstaller"""
-    try:
-        # pyinstaller creates a temp folder and stores path in _MEIPASS
-        base_path = sys._MEIPASS
-    except Exception:
-        base_path = os.path.abspath(".")
-    
-    return os.path.join(base_path, relative_path)
-
 block_cipher = None
 
 a = Analysis(['main.py'], # remove pathex for portability

@@ -10,6 +10,11 @@ import game.setup_game as setup_game
 import sys
 import os
 
+# PyInstaller builds with the GAME_TITLE below automatically,
+# but still must be swtitched manually in .github/workflows/package_builder.yml
+GAME_TITLE = "The Rat Catcher"
+
+
 def asset_path(relative_path):
     """Get absolute path to the asset, for pyinstaller"""
     try:
@@ -20,7 +25,7 @@ def asset_path(relative_path):
     
     return os.path.join(base_path, relative_path)
 
-tileset_path = asset_path("assets/Anno_16x16.png")
+tileset_path = asset_path("assets/tileset.png")
 
 
 def save_game(handler: input_handlers.BaseEventHandler, filename: str) -> None:
@@ -43,7 +48,7 @@ def main() -> None:
         screen_width,
         screen_height,
         tileset=tileset,
-        title="The Rat Catcher",
+        title=GAME_TITLE,
         vsync=True
     ) as context:
         root_console = tcod.Console(screen_width, screen_height, order="F")

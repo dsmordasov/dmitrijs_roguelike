@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import copy
 import lzma
+from main import GAME_TITLE
 import pickle
 import traceback
 from typing import Optional
@@ -93,7 +94,7 @@ class MainMenu(input_handlers.BaseEventHandler):
         console.print(
             console.width // 2,
             console.height // 2 - 4,
-            "The Rat Catcher",
+            GAME_TITLE,
             fg=color.menu_title,
             alignment=tcod.CENTER,
         )

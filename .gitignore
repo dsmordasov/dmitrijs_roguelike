@@ -2,6 +2,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
+*.pyc
 
 # Saved games
 *.sav
@@ -19,3 +20,12 @@ __pycache__/
 
 # No idea (haha) what this is from, but it is not needed
 .idea/*
+
+# Distribution / packaging
+.Python
+build/
+dist/
+Lib/
+Scripts/
+
+# Choosing to keep my PyInstaller spec files in, as it is not the simplest config

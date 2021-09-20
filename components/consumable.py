@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Optional, TYPE_CHECKING
 
-import game.actions
+import game.actions as actions
 import components.ai
 import game.color as color
 import components.inventory
@@ -15,7 +15,7 @@ from game.input_handlers import (
 )
 
 if TYPE_CHECKING:
-    from entity import Actor, items
+    from game.entity import Actor, items
 
 class Consumable(BaseComponent):
     parent: Item 

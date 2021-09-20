@@ -1,4 +1,4 @@
-from components.ai import BlindEnemy, ConfusedEnemy, HostileEnemy
+from components.ai import BlindEnemy, ConfusedEnemy, HostileEnemy, BossEnemy
 from components import consumable, equippable
 from components.equipment import Equipment
 from components.fighter import Fighter
@@ -61,7 +61,7 @@ the_rat_catcher = Actor(
     char="K", 
     color=(63, 127, 63), 
     name="The Rat Catcher",
-    ai_cls=HostileEnemy,
+    ai_cls=BossEnemy,
     equipment=Equipment(),
     fighter=Fighter(hp=10, base_defense=2, base_power=5),
     inventory=Inventory(capacity=0),

@@ -218,19 +218,22 @@ def generate_end_level(
     x = round(dungeon.width/2 - dungeon.width/4)
     y = round(dungeon.height/2)
 
-    boss_room_width = 20
+    boss_room_width = 15
     boss_room_height = 10
 
     boss_room = RectangularRoom(x, y, boss_room_width, boss_room_height)
     dungeon.tiles[boss_room.inner] = tile_types.floor
 
     player_spawnpoint = ((x+2), round(y+boss_room_height/2))
-    boss_spawnpoint = (round(x+boss_room_width/2), round(y+boss_room_height/2))
+    boss_spawnpoint = ((x+9), round(y+boss_room_height/2))
 
     # The order of arguments in the two lines below physically hurt
     player.place(*player_spawnpoint, dungeon)
     entity_factories.the_rat_catcher.spawn(dungeon, *boss_spawnpoint)
 
+    # actually this whole boss room hurts me, so much hardcode and the boss room -
+    # just a rectangle, really? but damn do I want something finishable
+    # please forgive me if you do any bit of game dev and are looking through this
     return dungeon
     
 

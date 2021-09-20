@@ -36,9 +36,16 @@ class DelveAction(Action):
         """
         Take the stairs
         """
+        # commented out if I'd like to make descending the staircase a button action instead of automatic
         #if (self.entity.x, self.entity.y) == self.engine.game_map.downstairs_location:
         self.engine.game_world.generate_floor()
-        self.engine.message_log.add_message(
+        if self.engine.game_world.current_floor == 2:
+            self.engine.message_log.add_message(
+                '"I understand you may be angry. It is not the money that angered me.' +\
+                    'It is what this place did to Agnes. Please forgive me," he says, picks up his flute and' +\
+                        " starts to play a sad melody - which has no effect on you.")
+        else:
+            self.engine.message_log.add_message(
                 "You descend the staircase.", color.descend
             )
         #else:
@@ -98,6 +105,22 @@ class MeleeAction(ActionWithDirection):
             self.engine.message_log.add_message(
                 f"{attack_desc} but does no damage.", attack_color
             )
+
+class BossSpecialAttack(Action): 
+
+    def perform(self, target) -> None:
+        self.target = target
+        
+        damage = 5 # flutes do true damage haha
+
+        attack_desc = f"{self.entity.name} throws his flute at you for 5 hit points!"
+        attack_color = color.enemy_atk
+        self.engine.message_log.add_message(attack_desc, attack_color)
+        self.target.fighter.hp -= damage 
+
+    # either create a new component of abilities, or on expanding the game
+    # there will be too many actions when defining special enemy attacks!
+
 
 class MovementAction(ActionWithDirection):
     def perform(self) -> None:

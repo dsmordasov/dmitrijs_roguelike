@@ -3,7 +3,6 @@ from __future__ import annotations
 
 import copy
 import lzma
-from main import GAME_TITLE
 import pickle
 import traceback
 from typing import Optional
@@ -89,6 +88,8 @@ class MainMenu(input_handlers.BaseEventHandler):
 
     def on_render(self, console: tcod.Console) -> None:
         """Render the main menu on a background image"""
+        from main import GAME_TITLE
+
         console.draw_semigraphics(background_image, 0, 0)
 
         console.print(

@@ -77,7 +77,7 @@ jobs:
         if: runner.os == 'Windows'
         shell: pwsh
         run: |
-          Compress-Archive dist/*/ ${{ env.archive-name }}.zip
+          Compress-Archive dist/* ${{ env.archive-name }}.zip
       # Upload archives as artifacts, these can be downloaded from the GitHub actions page.
       - name: "Upload Artifact"
         uses: actions/upload-artifact@v2

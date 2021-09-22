@@ -136,7 +136,7 @@ class GameWorld:
 
         self.current_floor += 1
 
-        if self.current_floor == 2: # Boss room
+        if self.current_floor == 5: # Boss room
             self.engine.game_map = generate_end_level(
                 map_width=self.map_width,
                 map_height=self.map_height,

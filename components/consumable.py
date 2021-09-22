@@ -107,14 +107,20 @@ class ConfusionConsumable(Consumable):
         if target is consumer:
             raise Impossible("You cannot confuse yourself!")
 
-        self.engine.message_log.add_message(
-            f"The {target.name} is confused!",
-            color.status_effect_applied
-        )
-        target.ai = components.ai.ConfusedEnemy(
-            entity=target, previous_ai = target.ai, turns_remaining=self.number_of_turns
-        )
-        self.consume
+        if target.ai == components.ai.BossEnemy:
+            self.engine.message_log.add_message(
+                f'"You fool! Trying to play me MY songs?!',
+            color.error)
+            self.consume
+        else:
+            self.engine.message_log.add_message(
+                f"The {target.name} is confused!",
+                color.status_effect_applied
+            )
+            target.ai = components.ai.ConfusedEnemy(
+                entity=target, previous_ai = target.ai, turns_remaining=self.number_of_turns
+            )
+            self.consume
 
 class FirebombDamageConsumable(Consumable):
     def __init__(self, damage: int, radius: int):

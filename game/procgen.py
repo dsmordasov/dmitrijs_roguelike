@@ -14,38 +14,39 @@ if TYPE_CHECKING:
     from entity import Entity
 
 max_items_by_floor = [
-    (1, 1),
+    (1, 2),
     (2, 2),
-    (3, 3),
-    (4, 2),
-    (5, 0) # Makes sure no items are spawned on The Rat Catcher floor
+    (3, 2),
+    (4, 1),
+    (5, 0) # Makes sure no items are spawned on boss floor
 ]
 
 max_monsters_by_floor = [
-    (1, 10),
-    (2, 8),
-    (3, 8),
-    (4, 8),
+    (1, 9),
+    (2, 6),
+    (3, 6),
+    (4, 3),
     (5, 1)
 ]
 
 item_chances: Dict[int, List[Tuple[Entity, int]]] = {
-    1: [(entity_factories.pretzel, 5), (entity_factories.rock, 5)],
-    2: [(entity_factories.wooden_stick, 10), (entity_factories.leather_armor, 10)],
-    3: [(entity_factories.carrot_flute, 5), (entity_factories.firebomb, 5)],
-    4: [(entity_factories.sword, 25), (entity_factories.chain_mail, 10)],
+    1: [(entity_factories.pretzel, 60), (entity_factories.rock, 40)],
+    2: [(entity_factories.pretzel, 20), (entity_factories.rock, 10),
+        (entity_factories.wooden_stick, 35), (entity_factories.leather_armor, 35)],
+    3: [(entity_factories.pretzel, 50), (entity_factories.rock, 5),
+        (entity_factories.wooden_stick, 10), (entity_factories.leather_armor, 10),
+        (entity_factories.carrot_flute, 5), (entity_factories.firebomb, 20)],
+    4: [(entity_factories.pretzel, 10), (entity_factories.firebomb, 10), 
+        (entity_factories.sword, 40), (entity_factories.chain_mail, 40)],
 }
 
 enemy_chances: Dict[int, List[Tuple[Entity, int]]] = {
     1: [(entity_factories.mouse, 100)],
-    2: [(entity_factories.mouse, 80), (entity_factories.rat, 20)],
-    3: [(entity_factories.mouse, 40), (entity_factories.rat, 40),\
-         (entity_factories.bat, 20)],
-    4: [(entity_factories.mouse, 20), (entity_factories.rat, 40),\
-         (entity_factories.bat, 20), (entity_factories.giant_rat, 20)],
-    5: [(entity_factories.mouse, 0), (entity_factories.rat, 0),\
-         (entity_factories.bat, 0), (entity_factories.giant_rat, 0),\
-              (entity_factories.the_rat_catcher, 100)] # Forces The Rat Catcher to spawn on 5th floor
+    2: [(entity_factories.mouse, 20), (entity_factories.rat, 80)],
+    3: [(entity_factories.mouse, 0), (entity_factories.rat, 70),\
+         (entity_factories.bat, 20), (entity_factories.giant_rat, 10)],
+    4: [(entity_factories.mouse, 0), (entity_factories.rat, 20),\
+         (entity_factories.bat, 20), (entity_factories.giant_rat, 60)],
 }
 
 def get_max_value_for_floor(

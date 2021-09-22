@@ -12,9 +12,9 @@ player = Actor(
     name="Player", 
     ai_cls=HostileEnemy, # It is overriden, do not worry
     equipment=Equipment(),
-    fighter=Fighter(hp=20, base_defense=10, base_power=15),
+    fighter=Fighter(hp=20, base_defense=0, base_power=1),
     inventory=Inventory(capacity=26),
-    level=Level(level_up_base=200)
+    level=Level(level_up_base=100)
     )
 #Enemies
 mouse = Actor(
@@ -33,7 +33,7 @@ rat = Actor(
     name="Rat",
     ai_cls=HostileEnemy,
     equipment=Equipment(),
-    fighter=Fighter(hp=2, base_defense=1, base_power=3),
+    fighter=Fighter(hp=2, base_defense=0, base_power=4),
     inventory=Inventory(capacity=0),
     level=Level(xp_given=40)
     )
@@ -43,7 +43,7 @@ bat = Actor(
     name="Bat",
     ai_cls=BlindEnemy,
     equipment=Equipment(),
-    fighter=Fighter(hp=2, base_defense=1, base_power=4),
+    fighter=Fighter(hp=2, base_defense=1, base_power=5),
     inventory=Inventory(capacity=0),
     level=Level(xp_given=50)
     )
@@ -53,7 +53,7 @@ giant_rat = Actor(
     name="Giant Rat",
     ai_cls=HostileEnemy,
     equipment=Equipment(),
-    fighter=Fighter(hp=5, base_defense=2, base_power=5),
+    fighter=Fighter(hp=5, base_defense=1, base_power=5),
     inventory=Inventory(capacity=0),
     level=Level(xp_given=100)
     )
@@ -91,7 +91,7 @@ firebomb = Item(
     char=".",
     color=(255, 0, 0),
     name="Firebomb",
-    consumable=consumable.FirebombDamageConsumable(damage=12, radius=3)
+    consumable=consumable.FirebombDamageConsumable(damage=6, radius=2)
 )
 # Equipment
 # Equipment - weapons

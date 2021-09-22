@@ -8,7 +8,7 @@ import tcod
 from tcod.event_constants import K_ESCAPE
 from tcod.libtcodpy import namegen_destroy
 
-import game.actions
+import game.actions as actions
 from game.actions import (
     Action,
     BumpAction,
@@ -281,19 +281,19 @@ class CharacterScreenEventHandler(AskUserEventHandler):
         )
 
         console.print(
-            x=(x + 1), y=(y+3), string=f"Level: {self.engine.player.level.current_level}"
+            x=(x + 1), y=(y+2), string=f"Level: {self.engine.player.level.current_level}"
         )
 
         console.print(
-            x=(x + 1), y=(y+4), string=f"XP: {self.engine.player.level.current_xp}/{self.engine.player.level.experience_to_next_level}"
+            x=(x + 1), y=(y+3), string=f"XP: {self.engine.player.level.current_xp}/{self.engine.player.level.experience_to_next_level}"
         )
 
         console.print(
-            x=(x + 1), y=(y+5), string=f"Attack: {self.engine.player.fighter.power}"
+            x=(x + 1), y=(y+4), string=f"Attack: {self.engine.player.fighter.power}"
         )
 
         console.print(
-            x=(x + 1), y=(y+6), string=f"Defense: {self.engine.player.fighter.defense}"
+            x=(x + 1), y=(y+5), string=f"Defense: {self.engine.player.fighter.defense}"
         )
 
 class DelveEventHandler(AskUserEventHandler):

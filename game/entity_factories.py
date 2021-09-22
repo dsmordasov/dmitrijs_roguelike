@@ -71,7 +71,7 @@ the_rat_catcher = Actor(
 # Consumables
 pretzel = Item(
     char="!",
-    color=(127, 0, 255),
+    color=(165, 42, 42),
     name="Pretzel",
     consumable=consumable.HealingConsumable(amount=4),
 )

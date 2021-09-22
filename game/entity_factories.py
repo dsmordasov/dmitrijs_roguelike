@@ -75,6 +75,12 @@ pretzel = Item(
     name="Pretzel",
     consumable=consumable.HealingConsumable(amount=4),
 )
+beer = Item(
+    char="!",
+    color=(255, 215, 0),
+    name="Beer",
+    consumable=consumable.HealingConsumable(amount=20), 
+) # hope this does not promote the wrong message, never forget to eat when drinking
 rock = Item(
     char=".",
     color=(255, 255, 0),

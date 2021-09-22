@@ -38,16 +38,29 @@ class DelveAction(Action):
         """
         # commented out if I'd like to make descending the staircase a button action instead of automatic
         #if (self.entity.x, self.entity.y) == self.engine.game_map.downstairs_location:
+
+        # The code below is not a nice way of doing this. But it does do its job. Conversation system
+        # and game text database coming soon in v0.2! (aka problem for future Dmitrij)
         self.engine.game_world.generate_floor()
         if self.engine.game_world.current_floor == 2:
             self.engine.message_log.add_message(
-                '"I understand you may be angry. It is not the money that angered me.' +\
-                    'It is what this place did to Agnes. Please forgive me," he says, picks up his flute and' +\
-                        " starts to play a sad melody - which has no effect on you.")
-        else:
+                'Not that the Hammeln townsmen were too kind to you. But you liked fishing.' +\
+                    ' And they did buy your fish, which allowed you to catch more fish.' +\
+                        ' It was a simple life, and you liked it. You want it back.')
+        elif self.engine.game_world.current_floor == 3:
             self.engine.message_log.add_message(
-                "You descend the staircase.", color.descend
-            )
+                '"As you delve into the middle level of the dungeon, you notice a sombre tune ' +\
+                    'sometimes emerging above the ever-present rat squeaks.')
+        elif self.engine.game_world.current_floor == 4:
+            self.engine.message_log.add_message(
+                '"The music intensifies. In most people, it would bring out an intense longing for...' +\
+                    ' well, what does it matter? You are not most people. You just care about catching fish.' +\
+                        ' Getting close, based fisherman.')
+        elif self.engine.game_world.current_floor == 5:
+            self.engine.message_log.add_message(
+                'A tall, wiry character in gray stands before you. You look into his dark eyes.' +\
+                    '\n"This place, these times... it corrupts everyone," he says, picking up his flute and' +\
+                        " starts to play a sad magic melody - which has no effect on you.")
         #else:
         #    raise exceptions.Impossible("There are no stairs here.")
 
@@ -144,6 +157,16 @@ class BumpAction(ActionWithDirection):
             return MeleeAction(self.entity, self.dx, self.dy).perform()
         elif self.target_item:
             return PickupAction(self.entity, self.dx, self.dy).perform()
+        else:
+            return MovementAction(self.entity, self.dx, self.dy).perform()
+
+class BlindEnemyAction(ActionWithDirection): # Can't access engine.player, engine not defined
+    def perform(self) -> None:
+        print(self.target_actor)
+        if self.target_actor == self.engine.player:
+            return MeleeAction(self.entity, self.dx, self.dy).perform()
+        elif self.target_actor and ~(self.target_actor == self.engine.player):
+            return WaitAction(self.entity).perform()
         else:
             return MovementAction(self.entity, self.dx, self.dy).perform()
 

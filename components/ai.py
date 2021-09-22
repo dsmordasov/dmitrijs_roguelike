@@ -6,7 +6,7 @@ from typing import List, Optional, Tuple, TYPE_CHECKING
 import numpy as np # type: ignore
 import tcod
 
-from game.actions import Action, BossSpecialAttack, BumpAction, MeleeAction, MovementAction, WaitAction
+from game.actions import Action, BossSpecialAttack, BumpAction, MeleeAction, MovementAction, WaitAction, BlindEnemyAction
 
 if TYPE_CHECKING:
     from entity import Actor
@@ -82,7 +82,7 @@ class BossEnemy(BaseAI):
         distance = abs(dx) + abs(dy) # Chebyshev distance
 
         if self.engine.game_map.visible[self.entity.x, self.entity.y]:
-            if (2 < distance <= 8) and self.flutes:
+            if (2 < distance <= 4) and self.flutes:
                 self.flutes = False # otherwise he chucks infinite flutes until you die haha
                 return BossSpecialAttack(self.entity).perform(target)
             if distance <= 1:
@@ -108,7 +108,7 @@ class BlindEnemy(BaseAI):
 
     def perform(self) -> None:
         
-        direction_x, direction_y = random.choice(
+        dx, dy = random.choice(
             [
                 (-1, -1), # NW
                 (0, -1), # N
@@ -121,9 +121,14 @@ class BlindEnemy(BaseAI):
             ]
         )
 
+        #target_x = self.entity.x + direction_x
+        #target_y = self.entity.y + direction_y
         # The actor will either try to move or attack in the chosen direction
         # In case the actor bumps into a wall, a turn is just wasted
-        return BumpAction(self.entity, direction_x, direction_y).perform()
+        # A blind enemy won't atack other enemies, just the player
+        return BlindEnemyAction(self.entity, dx, dy).perform()
+
+        
 
 class ConfusedEnemy(BaseAI):
     """

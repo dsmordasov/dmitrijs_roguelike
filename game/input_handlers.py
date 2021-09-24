@@ -706,7 +706,7 @@ class GameWonEventHandler(AskUserEventHandler):
         "\n\nAs a reward, tell me you how you liked"
         "\nit and ask me in real life for a beer"
         "\n(or a coffee). It's on me - I really"
-        "\nappreciate you for putting in the time"
+        "\nappreciate you for taking the time"
         "\nto finish this tiny game of mine."
         "\n\n\n With love,\n\n Dmitrij"))
         # If you just read the message above without playing the 

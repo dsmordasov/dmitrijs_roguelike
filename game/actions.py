@@ -44,7 +44,7 @@ class DelveAction(Action):
         self.engine.game_world.generate_floor()
         if self.engine.game_world.current_floor == 2:
             self.engine.message_log.add_message(
-                'Not that the Hammeln townsmen were too kind to you. But you liked fishing.' +\
+                'Not that the people of Hammeln were too kind to you. But you liked fishing.' +\
                     ' And they did buy your fish, which allowed you to catch more fish.' +\
                         ' It was a simple life, and you liked it. You want it back.')
         elif self.engine.game_world.current_floor == 3:
@@ -59,7 +59,7 @@ class DelveAction(Action):
         elif self.engine.game_world.current_floor == 5:
             self.engine.message_log.add_message(
                 'A tall, wiry character in gray stands before you. You look into his dark eyes.' +\
-                    '\n"This place, these times... it corrupts everyone," he says, picking up his flute and' +\
+                    '\n"This place, these times... everyone gets corrupted sooner or later, no matter how honest," he says, picks up his flute and' +\
                         " starts to play a sad magic melody - which has no effect on you.")
         #else:
         #    raise exceptions.Impossible("There are no stairs here.")
@@ -134,7 +134,6 @@ class BossSpecialAttack(Action):
     # either create a new component of abilities, or on expanding the game
     # there will be too many actions when defining special enemy attacks!
 
-
 class MovementAction(ActionWithDirection):
     def perform(self) -> None:
         dest_x, dest_y = self.dest_xy
@@ -160,9 +159,11 @@ class BumpAction(ActionWithDirection):
         else:
             return MovementAction(self.entity, self.dx, self.dy).perform()
 
-class BlindEnemyAction(ActionWithDirection): # Can't access engine.player, engine not defined
+class BlindEnemyAction(ActionWithDirection):
+    """ The actor will either try to move or attack in the chosen direction
+        In case the actor bumps into a wall, a turn is just wasted
+        A blind enemy won't atack other enemies, just the player"""
     def perform(self) -> None:
-        print(self.target_actor)
         if self.target_actor == self.engine.player:
             return MeleeAction(self.entity, self.dx, self.dy).perform()
         elif self.target_actor and ~(self.target_actor == self.engine.player):

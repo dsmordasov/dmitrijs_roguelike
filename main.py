@@ -12,7 +12,7 @@ import os
 
 # PyInstaller builds with the GAME_TITLE below automatically,
 # but still must be swtitched manually in .github/workflows/package_builder.yml
-GAME_TITLE = "The Rat Catcher"
+GAME_TITLE = "The Ratcatcher"
 
 
 def asset_path(relative_path):

@@ -57,10 +57,10 @@ giant_rat = Actor(
     inventory=Inventory(capacity=0),
     level=Level(xp_given=100)
     )
-the_rat_catcher = Actor(
+the_ratcatcher = Actor(
     char="K", 
     color=(63, 127, 63), 
-    name="The Rat Catcher",
+    name="The Ratcatcher",
     ai_cls=BossEnemy,
     equipment=Equipment(),
     fighter=Fighter(hp=10, base_defense=2, base_power=5),

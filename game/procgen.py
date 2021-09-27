@@ -231,7 +231,7 @@ def generate_end_level(
 
     # The order of arguments in the two lines below physically hurt
     player.place(*player_spawnpoint, dungeon)
-    entity_factories.the_rat_catcher.spawn(dungeon, *boss_spawnpoint)
+    entity_factories.the_ratcatcher.spawn(dungeon, *boss_spawnpoint)
 
     # actually this whole boss room hurts me, so much hardcode and the boss room -
     # just a rectangle, really? but damn do I want something finishable

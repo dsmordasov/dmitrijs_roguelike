@@ -22,7 +22,7 @@ max_items_by_floor = [
 ]
 
 max_monsters_by_floor = [
-    (1, 9),
+    (1, 7),
     (2, 6),
     (3, 6),
     (4, 3),
@@ -36,7 +36,7 @@ item_chances: Dict[int, List[Tuple[Entity, int]]] = {
     3: [(entity_factories.pretzel, 50), (entity_factories.rock, 5),
         (entity_factories.wooden_stick, 10), (entity_factories.leather_armor, 10),
         (entity_factories.carrot_flute, 5), (entity_factories.firebomb, 20)],
-    4: [(entity_factories.pretzel, 10), (entity_factories.firebomb, 10), 
+    4: [(entity_factories.beer, 10), (entity_factories.firebomb, 10), 
         (entity_factories.sword, 40), (entity_factories.chain_mail, 40)],
 }
 
@@ -226,7 +226,7 @@ def generate_end_level(
     dungeon.tiles[boss_room.inner] = tile_types.floor
 
     player_spawnpoint = ((x+2), round(y+boss_room_height/2))
-    boss_spawnpoint = ((x+9), round(y+boss_room_height/2))
+    boss_spawnpoint = ((x+10), round(y+boss_room_height/2))
 
     # The order of arguments in the two lines below physically hurt
     player.place(*player_spawnpoint, dungeon)

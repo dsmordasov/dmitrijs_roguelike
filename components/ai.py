@@ -110,22 +110,17 @@ class BlindEnemy(BaseAI):
         
         dx, dy = random.choice(
             [
-                (-1, -1), # NW
+                #(-1, -1), # NW
                 (0, -1), # N
-                (1, -1), # NE
+                #(1, -1), # NE
                 (-1, 0), # W
                 (1, 0), # E
-                (-1, 1), # SW
+                #(-1, 1), # SW
                 (0, 1), # S
-                (1, 1), # SQ
+                #(1, 1), # SQ
             ]
         )
-
-        #target_x = self.entity.x + direction_x
-        #target_y = self.entity.y + direction_y
-        # The actor will either try to move or attack in the chosen direction
-        # In case the actor bumps into a wall, a turn is just wasted
-        # A blind enemy won't atack other enemies, just the player
+        
         return BlindEnemyAction(self.entity, dx, dy).perform()
 
         
@@ -155,14 +150,14 @@ class ConfusedEnemy(BaseAI):
             # Pick a random direction
             direction_x, direction_y = random.choice(
                 [
-                    (-1, -1), # NW
+                    #(-1, -1), # NW
                     (0, -1), # N
-                    (1, -1), # NE
+                    #(1, -1), # NE
                     (-1, 0), # W
                     (1, 0), # E
-                    (-1, 1), # SW
+                    #(-1, 1), # SW
                     (0, 1), # S
-                    (1, 1), # SQ
+                    #(1, 1), # SQ
                 ]
             )
 

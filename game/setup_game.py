@@ -60,7 +60,8 @@ def new_game() -> Engine:
         "You are Sepp Jorgen, a simple fisherman from the town of Hammeln." +\
              " Your town elders have angered The Rat Catcher by not paying him for his services," +\
                  " so he played his flute and lead the whole town deep into the caves of mount Koppel." +\
-                     " Save your fellow townsfolk!"
+                     " Save your fellow townsfolk!",
+                      fg=color.welcome_text
     )
 
     """ # GIVE PLAYER EQUIPMENT TO START WITH

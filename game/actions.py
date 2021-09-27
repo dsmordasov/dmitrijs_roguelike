@@ -46,21 +46,25 @@ class DelveAction(Action):
             self.engine.message_log.add_message(
                 'Not that the people of Hammeln were too kind to you. But you liked fishing.' +\
                     ' And they did buy your fish, which allowed you to catch more fish.' +\
-                        ' It was a simple life, and you liked it. You want it back.')
+                        ' It was a simple life, and you liked it. You want it back.',
+                        fg=color.welcome_text)
         elif self.engine.game_world.current_floor == 3:
             self.engine.message_log.add_message(
                 '"As you delve into the middle level of the dungeon, you notice a sombre tune ' +\
-                    'sometimes emerging above the ever-present rat squeaks.')
+                    'sometimes emerging above the ever-present rat squeaks.',
+                    fg=color.welcome_text)
         elif self.engine.game_world.current_floor == 4:
             self.engine.message_log.add_message(
                 '"The music intensifies. In most people, it would bring out an intense longing for...' +\
                     ' well, what does it matter? You are not most people. You just care about catching fish.' +\
-                        ' Getting close, based fisherman.')
+                        ' Getting close, based fisherman.',
+                        fg=color.welcome_text)
         elif self.engine.game_world.current_floor == 5:
             self.engine.message_log.add_message(
                 'A tall, wiry character in gray stands before you. You look into his dark eyes.' +\
                     '"This place, these times... everyone gets corrupted sooner or later, no matter how honest," he says, picks up his flute and' +\
-                        " starts to play a sad magic melody - which has no effect on you.")
+                        " starts to play a sad magic melody - which has no effect on you.",
+                        fg=color.welcome_text)
         #else:
         #    raise exceptions.Impossible("There are no stairs here.")
 

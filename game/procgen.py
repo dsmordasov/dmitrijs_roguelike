@@ -135,7 +135,8 @@ def place_entities(
         x = random.randint(room.x1 + 1, room.x2 - 1)
         y = random.randint(room.y1 + 1, room.y2 - 1)
 
-        if not any(entity.x == x and entity.y == y for entity in dungeon.entities):
+        if (not any(entity.x == x and entity.y == y for entity in dungeon.entities))\
+             and (dungeon.tiles[(x, y)] != tile_types.down_stairs):
             entity.spawn(dungeon, x, y)
 
 def tunnel_between(

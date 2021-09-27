@@ -643,7 +643,7 @@ class HistoryViewer(EventHandler):
         # Draw a frame with a custom banner title
         log_console.draw_frame(0, 0, log_console.width, log_console.height)
         log_console.print_box(
-            0, 0, log_console.width, 1, "-| Diary |-", alignment=tcod.CENTER
+            0, 0, log_console.width, 1, "-| Message log |-", alignment=tcod.CENTER
         )
 
         # Render the message log using the cursor parameter
@@ -757,7 +757,7 @@ class MenuHandler(AskUserEventHandler):
         "Inventory:    I\n"
         "Drop items:   D\n"
         "Character:    C\n"
-        "Diary:        V\n"
+        "Message log:  V\n"
         "Look around:  /\n"
         "Pause menu:  Esc\n\n"
         "Bump into enemies to\n"
@@ -766,11 +766,13 @@ class MenuHandler(AskUserEventHandler):
         "Look around using '/'\n"
         "and arrow keys to find\n"
         "out an entity's name.\n\n"
-        "Use items by accessing\n"
-        "them with their set key\n"
-        "from the inventory.\n\n"
+        "Use or equip items by\n"
+        "acessing them with their\n"
+        "bound key from the\n"
+        "inventory.\n\n"
         "Scroll through the\n"
-        "diary using arrow keys.\n\n"
+        "message log using \n"
+        "using arrow keys.\n\n"
         "This game saves your\n"
         "progress automatically."
         ))

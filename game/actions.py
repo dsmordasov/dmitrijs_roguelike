@@ -59,7 +59,7 @@ class DelveAction(Action):
         elif self.engine.game_world.current_floor == 5:
             self.engine.message_log.add_message(
                 'A tall, wiry character in gray stands before you. You look into his dark eyes.' +\
-                    '\n"This place, these times... everyone gets corrupted sooner or later, no matter how honest," he says, picks up his flute and' +\
+                    '"This place, these times... everyone gets corrupted sooner or later, no matter how honest," he says, picks up his flute and' +\
                         " starts to play a sad magic melody - which has no effect on you.")
         #else:
         #    raise exceptions.Impossible("There are no stairs here.")

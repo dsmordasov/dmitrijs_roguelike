@@ -30,7 +30,7 @@ mouse = Actor(
 )
 rat = Actor(
     char="r",
-    color=color.gray,
+    color=color.light_gray,
     name="Rat",
     ai_cls=HostileEnemy,
     equipment=Equipment(),
@@ -40,7 +40,7 @@ rat = Actor(
 )
 bat = Actor(
     char="b",
-    color=color.dark_gray,
+    color=color.light_gray,
     name="Bat",
     ai_cls=BlindEnemy,
     equipment=Equipment(),
@@ -50,7 +50,7 @@ bat = Actor(
 )
 giant_rat = Actor(
     char="g",
-    color=color.dark_gray,
+    color=color.gray,
     name="Giant Rat",
     ai_cls=HostileEnemy,
     equipment=Equipment(),

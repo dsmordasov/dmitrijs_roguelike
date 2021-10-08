@@ -1,27 +1,44 @@
-white = (0xFF, 0xFF, 0xFF)
-black = (0x0, 0x0, 0x0)
-red = (0xFF, 0x0, 0x0)
+white = (255, 255, 255)
+black = (0, 0, 0)
 
-player_atk = (0xE0, 0xE0, 0xE0)
-enemy_atk = (0xFF, 0xC, 0xC0)
-needs_target = (0x3F, 0xFF, 0xFF)
-status_effect_applied = (0x3F, 0xFF, 0x3F)
-descend = (0x9F, 0x3F, 0xFF)
+blue        = (65, 131, 196)
+vlight_gray = (224, 224, 224)
+light_gray  = (153, 153, 153)
+gray        = (102, 102, 102)
+dark_gray   = (51, 51, 51)
+green       = (108, 198, 68)
+dark_green  = (0, 96, 0)
+red         = (189, 44, 0)
+orange      = (255, 160, 48)
 
-player_die = (0xFF, 0x30, 0x30)
-enemy_die = (0xFF, 0xA0, 0x30)
+brown       = (150, 75, 0)
+yellow      = (255, 215, 0)
+pink        = (255, 192, 192)
+teal        = (63, 255, 255)
+purple      = (159, 63, 255)
+dark_purple = (64, 16, 16)
 
-invalid = (0xFF, 0xFF, 0x00)
-impossible = (0x80, 0x80, 0x80)
-error = (0xFF, 0x40, 0x40)
+# message log colors
+player_atk = vlight_gray
+enemy_atk = pink
+needs_target = teal
+status_effect_applied = green
+descend = purple
 
-welcome_text = (0x20, 0xA0, 0xFF)
-game_won = (0xFF, 0xFF, 0x00)
-health_recovered = (0x0, 0xFF, 0x0)
+player_die = red
+enemy_die = orange
+
+invalid = yellow
+impossible = light_gray
+error = red
+
+welcome_text = blue
+game_won = yellow
+health_recovered = green
 
 bar_text = white
-bar_filled = (0x0, 0x60, 0x0)
-bar_empty = (0x40, 0x10, 0x10)
+bar_filled = dark_green
+bar_empty = dark_purple
 
-menu_title = (255, 255, 63)
+menu_title = yellow
 menu_text = white

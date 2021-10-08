@@ -22,8 +22,9 @@ def asset_path(relative_path):
         base_path = sys._MEIPASS
     except Exception:
         base_path = os.path.abspath(".")
-    
+
     return os.path.join(base_path, relative_path)
+
 
 tileset_path = asset_path("assets/tileset.png")
 
@@ -33,6 +34,7 @@ def save_game(handler: input_handlers.BaseEventHandler, filename: str) -> None:
     if isinstance(handler, input_handlers.EventHandler):
         handler.engine.save_as(filename)
         print("Game saved.")
+
 
 def main() -> None:
     screen_width = 80
@@ -57,39 +59,28 @@ def main() -> None:
                 root_console.clear()
                 handler.on_render(console=root_console)
                 context.present(root_console)
-                
+
                 try:
                     for event in tcod.event.wait():
                         context.convert_event(event)
                         handler = handler.handle_events(event)
-                except Exception: # Handle exception in game
-                    traceback.print_exc() # Print error to stderr
+                except Exception:  # Handle exception in game
+                    traceback.print_exc()  # Print error to stderr
                     # Then print the error to the message log
                     if isinstance(handler, input_handlers.EventHandler):
                         handler.engine.message_log.add_message(
                             traceback.format_exc(), color.error
                         )
-                        
+
         except exceptions.QuitWithoutSaving:
             raise
-        except SystemExit: # Save and quit
+        except SystemExit:  # Save and quit
             save_game(handler, "savegame.sav")
             raise
-        except BaseException: # Save on any other unexpected exit
+        except BaseException:  # Save on any other unexpected exit
             save_game(handler, "savegame.sav")
             raise
+
 
 if __name__ == "__main__":
     main()
-
-""" 
- ----------||||| BUGLIST  |||||----------
- 1) player can delve deeper into a dungeon even if there's an enemy on top of the staircase
- 2) entities can spawn on staircase, not a problem with monsters, but a problem with items! - doesn't get picked up if delving
- 3) multiple-word entities (e.g. The Rat Catcher) not capitalised in combat messages
-
-----------||||| BEFORE DEPLOYMENT  |||||----------
-1) fix up character attack power and armor to non-godmode
-2) make the end boss appear at appropriate level
-
-"""

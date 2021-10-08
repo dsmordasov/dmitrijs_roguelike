@@ -44,7 +44,7 @@ class GameMap:
         )
 
     @property
-    def items(self) -> iterator[Item]:
+    def items(self) -> Iterator[Item]:
         yield from (entity for entity in self.entities if isinstance(entity, Item))
 
     def get_blocking_entity_at_location(

@@ -18,6 +18,7 @@ if TYPE_CHECKING:
 
 T = TypeVar("T", bound="Entity")
 
+
 class Entity:
     """
     A generic object to represent players, enemies, items etc.
@@ -25,11 +26,11 @@ class Entity:
     parent: Union[GameMap, Inventory]
 
     def __init__(
-        self, 
+        self,
         parent: Optional[GameMap] = None,
-        x: int = 0, 
-        y: int = 0, 
-        char: str = "?", 
+        x: int = 0,
+        y: int = 0,
+        char: str = "?",
         color: Tuple[int, int, int] = (255, 255, 255),
         name: str = "<Unnamed>",
         blocks_movement: bool = False,
@@ -46,11 +47,11 @@ class Entity:
             # If parent isn't provided now, it will be set later
             self.parent = parent
             parent.entities.add(self)
-    
+
     @property
     def gamemap(self) -> GameMap:
         return self.parent.gamemap
-    
+
     def spawn(self: T, gamemap: GameMap, x: int, y: int) -> T:
         """Spawn a copy of this instance at the given location"""
         clone = copy.deepcopy(self)
@@ -65,12 +66,12 @@ class Entity:
         self.x = x
         self.y = y
         if gamemap:
-            if hasattr(self, "parent"): # Possibly uninitialized
+            if hasattr(self, "parent"):  # Possibly uninitialized
                 if self.parent is self.gamemap:
                     self.gamemap.entities.remove(self)
             self.parent = gamemap
             gamemap.entities.add(self)
-    
+
     def distance(self, x: int, y: int) -> float:
         """Return the distance between the current entity and the given (x, y) coordinate"""
         return math.sqrt((x - self.x) ** 2 + (y - self.y) ** 2)
@@ -79,7 +80,8 @@ class Entity:
         # Move the entity by a given amount
         self.x += dx
         self.y += dy
-    
+
+
 class Actor(Entity):
     def __init__(
         self,
@@ -116,7 +118,6 @@ class Actor(Entity):
         self.inventory = inventory
         self.inventory.parent = self
 
-
         self.level = level
         self.level.parent = self
 
@@ -124,6 +125,7 @@ class Actor(Entity):
     def is_alive(self) -> bool:
         """Returns True as long as this actor can perform actions"""
         return bool(self.ai)
+
 
 class Item(Entity):
     def __init__(
@@ -150,7 +152,7 @@ class Item(Entity):
         self.consumable = consumable
         if self.consumable:
             self.consumable.parent = self
-        
+
         self.equippable = equippable
         if self.equippable:
             self.equippable.parent = self

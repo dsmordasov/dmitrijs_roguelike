@@ -86,6 +86,8 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
+A short Roguelike game based on the book [**Krysař** (The Ratcatcher) by **_Viktor Dyk_**, done as a hobby programming/game dev project by a student with definitely not enough free time to be doing such things. 
+
 I have hardly put away any time to play videogames since I started my studies in Aerospace Engineering, almost five years ago now, at TU Delft. So, if you've no time to play videogames, what better way for a busy student to replace it with an even more time-demanding pastime - videogame development!
 
 
@@ -95,6 +97,15 @@ I have hardly put away any time to play videogames since I started my studies in
 * [NumPy](https://numpy.org/)
 * [PyInstaller](https://www.pyinstaller.org/)
 
+### The Ratcatcher?
+
+I chose to base the `v0.1` version of my Roguelike on the Czech novella [**Krysař** (The Ratcatcher) by **_Viktor Dyk_**](https://www.goodreads.com/book/show/23366314-the-ratcatcher?from_search=true&from_srp=true&qid=Kjq0Tbh8df&rank=9).
+
+If you know me in real life, you might have noticed that I read a lot, and since this was supposed to be mainly a programming pastime, I chose to outsource the story and world creation to someone who is better at it than me. There are a plethora of fantastic universes I know I could base the game on, yet I did not need anything too large for my `v0.1`. To venture out into the worlds of say, Tolkien, Herbert or Sapkowski for such a small game... it would feel like going on an arduous pilgrimage to the largest shopping mall in your city, just to buy a pack of gum.
+
+I would definitely recommend the book to an undoubted person of taste such as you (well, you did get this far into my readme, didn't you?). It is short, beautiful, and packs a punch. Most Czechs know it, as it is neither too difficult nor long on one's reading list for the Maturita national high school exams. I drew it for mine.
+
+On top of that, rats are an established RPG first enemy trope, so why not have a game with nothing but them?
 
 <!-- GETTING STARTED -->
 ## Playing the game
@@ -144,7 +155,7 @@ Uhhhh... Look, I know that it's not too difficult to just put up a CC license or
 
 * [The /r/roguelikedev 2020 tutorial, which provided the main game architecture and without which this project possible](http://rogueliketutorials.com/tutorials/tcod/v2/)
 * [The /r/roguelikedev 2021 libtcod tutorial, which helped me start with PyInstaller, and even automate building and deployment through GitHub actions](https://libtcod.github.io/tutorials/python/2021/)
-* [The Hoth Logomaker, a completely free logo creator](https://logomaker.thehoth.com)
+* [The Hoth Logomaker](https://logomaker.thehoth.com), along with [this image to .ico converter](https://image.online-convert.com/convert-to-ico)
 * [AbuDhabi/Anno for the 16x16 ASCII tileset, originally meant for Dwarf Fortress](https://dwarffortresswiki.org/index.php/Tileset_repository#16.C3.9716)
 
 

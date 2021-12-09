@@ -15,6 +15,7 @@ if TYPE_CHECKING:
     from entity import Actor
     from game_map import GameMap, GameWorld
 
+
 class Engine:
     game_map: GameMap
     game_world: GameWorld
@@ -32,14 +33,14 @@ class Engine:
                 try:
                     entity.ai.perform()
                 except exceptions.Impossible:
-                    pass # Ignore impossible action exceptions from AI
-        
+                    pass  # Ignore impossible action exceptions from AI
+
     def update_fov(self) -> None:
-        """Recompute the visible area based on the players POV""" 
+        """Recompute the visible area based on the players POV"""
         self.game_map.visible[:] = compute_fov(
             self.game_map.tiles["transparent"],
             (self.player.x, self.player.y),
-            radius = 8,
+            radius=8,
         )
         # If a tile is "visible", we add it to "explored"
         self.game_map.explored |= self.game_map.visible
@@ -65,7 +66,7 @@ class Engine:
         render_functions.render_dungeon_level(
             console=console,
             dungeon_level=self.game_world.current_floor,
-            location=(0,47)
+            location=(0, 47)
         )
 
         render_functions.render_names_at_mouse_location(
@@ -74,7 +75,7 @@ class Engine:
             y=44,
             engine=self
         )
-    
+
     def save_as(self, filename: str) -> None:
         """Save this Engine instance as a compressed file."""
         save_data = lzma.compress(pickle.dumps(self))

@@ -5,8 +5,8 @@
 # > pyinstaller build.spec
 
 
-from main import GAME_TITLE # works on LOCAL builds only!
-#GAME_TITLE = "The Rat Catcher" # Uncomment before pushing 
+#from main import GAME_TITLE # works on LOCAL builds only!
+GAME_TITLE = "The Ratcatcher" # Uncomment before pushing 
 block_cipher = None
 
 a = Analysis(['main.py'], # remove pathex for portability

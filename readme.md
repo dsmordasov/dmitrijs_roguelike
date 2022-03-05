@@ -88,7 +88,7 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-A short Roguelike game based on the book [**Krysař** (The Ratcatcher) by **_Viktor Dyk_**, done as a hobby programming/game dev project by a student with definitely not enough free time to be doing such things. 
+A short Roguelike game based on the book **Krysař** (The Ratcatcher) by **_Viktor Dyk_**, done as a hobby programming/game dev project by a student with definitely not enough free time to be doing such things. 
 
 I have hardly put away any time to play videogames since I started my studies in Aerospace Engineering, almost five years ago now, at TU Delft. So, if you've no time to play videogames, what better way for a busy student to replace it with an even more time-demanding pastime - videogame development!
 

@@ -18,7 +18,7 @@ defaults:
 env:
   python-version: "3.9.1"
   pyinstaller-version: "4.5.1"
-  project-name: TheRatCatcher # must rename manually, don't know how to access it from main.py :(
+  project-name: TheRatcatcher # must rename manually, don't know how to access it from main.py :(
 
 jobs:
   package:
@@ -82,7 +82,7 @@ jobs:
       - name: "Upload Artifact"
         uses: actions/upload-artifact@v2
         with:
-          name: automated-builds
+          name: v0.1_builds
           path: ${{ env.archive-name }}.*
           retention-days: 7
           if-no-files-found: error

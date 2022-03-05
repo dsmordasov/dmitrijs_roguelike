@@ -21,7 +21,7 @@ class Engine:
     game_world: GameWorld
 
     def __init__(self, player: Actor):
-        self.version = "v0.09"
+        self.version = "v0.1"
         self.message_log = MessageLog()
         self.mouse_location = (0, 0)
         self.player = player

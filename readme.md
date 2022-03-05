@@ -31,7 +31,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/dsmordasov/dmitrijs_roguelike">
+  <a href="https://github.com/dsmordasov/dmitrijs_roguelike/releases/tag/v0.1">
     <img src=".github/game_logo.jpg" alt="Logo" width="80" height="80">
   </a>
 
@@ -86,7 +86,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Product Name Screen Shot][product-screenshot]]()
 
 A short Roguelike game based on the book **Krysař** (The Ratcatcher) by **_Viktor Dyk_**, done as a hobby programming/game dev project by a student with definitely not enough free time to be doing such things. 
 
@@ -112,7 +112,27 @@ On top of that, rats are an established RPG first enemy trope, so why not have a
 <!-- GETTING STARTED -->
 ## Playing the game
 
-To get the game up and running, just download one of the latest `v0.1` release builds (Win, Mac and Linux friendly :heart:) [here]()! 
+To get the game up and running, just download one of the latest `v0.1` release builds (Win, Mac and Linux friendly :heart:) [here](https://github.com/dsmordasov/dmitrijs_roguelike/releases/tag/v0.1)! I hope that requiring you to have a keyboard to play the game is not asking for too much. 
+
+Press `Esc` in-game to see a short tutorial.
+<img src=".github/menu_screenshot.png" alt="Menu screenshot">
+Get down to the 5th dungeon level and face The Ratcatcher boss!
+
+### Game tips
+
+Heavily inspired by the original Rogue, so I wish you good luck - you will need it. The game is based on a bumping combat system - you can cheese it a bit by waiting (click `.`) until the enemies come to you, so that you would have a guaranteed first hit. 
+
+<img src=".github/game_screenshot1.png" alt="Ingame screenshot">
+
+I made using items is vital for the success of a dungeon delve. **Do not forget to equip items!** I recommend keeping rocks until you start encountering chonky rats in dungeon level 2 - by sniping them with a rock (hits closest enemy) from a distance, you can make sure that they don't get a single hit on you. 
+
+<img src=".github/game_screenshot2.png" alt="Ingame screenshot">
+
+As you level up, you can improve your constitution (HP), strength (damage) or agility (defense). Leveling up can save you in a tight fight by basically healing you, but you need increased damage and defense, as the enemies in the deeper dungeon levels are stronger and have thicker coats as well, absorbing more of the damage you cause, so choose wisely.
+
+Do keep some items for the end-game boss, but watch out for his special attacks, and for the fact that he might be immune to a certain item!
+
+The game's writing is no literary masterpiece, but some effort has been put into it, so for added context do read the story messages as you delve deeper into the dungeon!
 
 ### Playing around with the code
 

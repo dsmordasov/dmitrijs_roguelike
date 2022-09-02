@@ -118,11 +118,11 @@ Get down to the 5th dungeon level and face The Ratcatcher boss!
 
 ### Game tips
 
-Heavily inspired by the original Rogue, so I wish you good luck - you will need it. The game is based on a bumping combat system - you can cheese it a bit by waiting (click `.`) until the enemies come to you, so that you would have a guaranteed first hit. 
+Gamplay is heavily inspired by the original Rogue, so I wish you good luck - you will need it. The 'bumping' combat system can be cheesed a bit by waiting (click `.`) until the enemies come to you, so that you would have a guaranteed first hit. 
 
 <img src=".github/game_screenshot1.png" alt="Ingame screenshot">
 
-I made using items is vital for the success of a dungeon delve. **Do not forget to equip items!** I recommend keeping rocks until you start encountering chonky rats in dungeon level 2 - by sniping them with a rock (hits closest enemy) from a distance, you can make sure that they don't get a single hit on you. 
+I made using items vital for the success of a dungeon delve. **Do not forget to equip items!** I recommend keeping rocks until you start encountering chonky rats in dungeon level 2 - by sniping them with a rock (hits closest enemy) from a distance, you can make sure that they don't get a single hit on you. 
 
 <img src=".github/game_screenshot2.png" alt="Ingame screenshot">
 
